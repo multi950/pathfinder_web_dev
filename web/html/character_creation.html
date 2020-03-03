@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/general_style.css">
+    <link rel="stylesheet" href="../css/character_creation_tab_style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ancestry').load("tabs/ancestry.html"); 
+            $('#background').load("tabs/background.html");
+            $('#class').load("tabs/class.html");
+            $('#skill').load("tabs/skill.html");
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tab">
+            <button id="default" class="tablinks" onclick="openSection(event, 'ancestry')">Ancestry</button>
+            <button class="tablinks" onclick="openSection(event, 'background')">Background </button>
+            <button class="tablinks" onclick="openSection(event, 'class')">Class</button>
+            <button class="tablinks" onclick="openSection(event, 'skill')">Skill</button>
+        </div>
+        <div id="ancestry" class="tabcontent">
+        </div>
+        <div id="background" class="tabcontent">
+        </div>
+        <div id="class" class="tabcontent">
+        </div>
+        <div id="skill" class="tabcontent">
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../javascript/character_creation_tab.js"></script>
+    <script>  document.getElementById("default").click()</script>
+</body>
+
+</html>

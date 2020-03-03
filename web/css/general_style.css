@@ -1,0 +1,43 @@
+body{
+font-family: Arial;
+height: auto;
+width: auto;
+margin: 0px;
+}
+
+.container{
+    margin: 8px;
+}
+
+.container > *{
+    margin: 4px;
+}
+.about{
+    width: fit-content;
+    margin: auto;
+}
+.about > div {
+    width: 300px;
+    margin: 28px;
+    float: left;
+}
+.about > div > h3{
+text-align: center;
+}
+.about > div > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer{
+    position: fixed;
+    padding-left: 18px;
+    bottom: 0px;
+    background-color: black;
+    width: 100%;
+}
+
+footer > a {
+    color: white;
+}
