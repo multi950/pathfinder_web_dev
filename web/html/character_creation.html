@@ -8,21 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('#introduction').load("tabs/introduction.html"); 
             $('#ancestry').load("tabs/ancestry.html"); 
             $('#background').load("tabs/background.html");
             $('#class').load("tabs/class.html");
             $('#skill').load("tabs/skill.html");
+            $('#overview').load("tabs/overview.html");
         });
     </script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="content">
         <div class="tab">
-            <button id="default" class="tablinks" onclick="openSection(event, 'ancestry')">Ancestry</button>
-            <button class="tablinks" onclick="openSection(event, 'background')">Background </button>
-            <button class="tablinks" onclick="openSection(event, 'class')">Class</button>
-            <button class="tablinks" onclick="openSection(event, 'skill')">Skill</button>
+            <button id="default" class="tablinks" onclick="openSection(event, 'introduction')">1. Introduction</button>
+            <button class="tablinks" onclick="openSection(event, 'ancestry')">2. Ancestry</button>
+            <button class="tablinks" onclick="openSection(event, 'background')">3. Background </button>
+            <button class="tablinks" onclick="openSection(event, 'class')">4. Class</button>
+            <button class="tablinks" onclick="openSection(event, 'skill')">5. Skill</button>
+            <button class="tablinks" onclick="openSection(event, 'overview')">Overview</button>
+        </div>
+        <div id="introduction" class="tabcontent">
         </div>
         <div id="ancestry" class="tabcontent">
         </div>
@@ -32,7 +38,10 @@
         </div>
         <div id="skill" class="tabcontent">
         </div>
-
+        <div id="overview" class="tabcontent">
+        </div>
+        <button onclick="previousSection()">Prev</button>
+        <button onclick="nextSection()">Next</button>
     </div>
 
     <script type="text/javascript" src="../javascript/character_creation_tab.js"></script>
