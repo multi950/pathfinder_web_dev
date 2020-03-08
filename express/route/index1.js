@@ -6,19 +6,77 @@
 var express = require('express');
 var router  = express.Router();
 const connections = require("../database/connector");
-const remoteRepository = require("../database/remoteRepository");
+const repository = require("../database/remoteRepository");
 
 
-/*router.get("/character", function(req, res)  {
-    connections.query('SELECT * FROM actor', (err, result, fields) =>{
-        if(err) {
-            throw err;
-        }
-        console.log(result);
-        res.send(result);
+router.get("/user", (req, res) => {
+    repository.getEmails(req, res);
+});
+
+router.post("/user", (req, res) => {
+    repository.createUser(req, res);
+});
+
+router.get("/user/email", (req, res) => {
+    repository.getEmailPassword(req, res);
+});
+
+router.get("/character", (req, res) => {
+    repository.getCharacters(req, res);
+});
+
+router.post("/character/create", (req, res) => {
+    repository.createCharacters(req, res);
+});
+
+router.put("/character/id/update", (req, res) => {
+    repository.updateCharacter(req, res);
+});
+
+router.delete("/character/id/delete", (req, res) => {
+    repository.deleteCharacter(req, res);
+});
+
+router.get("/character/id/edit/ancestry", (req, res) => {
+    repository.getAncestries(req, res);
+});
+
+router.get("/character/id/edit/heritage", (req, res) => {
+    repository.getHeritages(req, res);
+});
+
+router.get("/character/id/edit/ancestryFeat", (req, res) => {
+    repository.getAncestryFeats(req, res);
+});
+
+router.get("/character/id/edit/background", (req, res) => {
+    repository.getBackgrounds(req, res);
+});
+
+router.get("/character/id/edit/class", (req, res) => {
+    repository.getClasses(req, res);
+});
+
+router.get("/character/id/edit/classoption", (req, res) => {
+    repository.getClassOption(req, res);
+});
+
+router.get("/character/id/edit/classfeature", (req, res) => {
+    repository.getClassFeatures(req, res);
+});
+
+router.get("/character/id/edit/classfeat", (req, res) => {
+    repository.getClassFeats(req, res);
+});
+
+/*
+router.get("/character/create", (req, res) => {
+    var userid = req.body.userid;
+    var json = req.body.description;
+    connections.query('INSERT INTO Character (“JSON”, “ID”) VALUES(“'+json+'”,”'+userid+'”)', function(err, result){
+        if(err) throw err;
+        res.send('character has been created');
     })
 });*/
-
-router.get("/character", (req,res) => remoteRepository.function1(req,res));
 
 module.exports = router;
