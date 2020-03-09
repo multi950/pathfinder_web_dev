@@ -8,14 +8,19 @@ const getEmails = function(req, res) {
         if(err) {
             throw err;
         }
+        var userEmail = req.body.email;
+        var userPassword = req.body.password;
+        Object.keys(result).forEach(function(key){
+            var tempEmail = result[key];
+            if(tempEmail === userEmail){
+                createUser(userEmail, userPassword);
+            }
+        })
         console.log(result);
-        res.send(result);
     })
 };
 
-const createUser = function(req, res){
-    var email = req.body.email;
-    var password = req.body.password;
+const createUser = function(email, password){
     connections.query("INSERT INTO user(email, password) VALUES ('"+email+"', '"+password+"'", (err, result)=>{
         if(err) {
             throw err;
@@ -27,12 +32,20 @@ const createUser = function(req, res){
 //login queries
 const getEmailPassword = function(req, res) {
     var email = req.body.email;
+    var password = req.body.password;
     connections.query("SELECT email, password FROM user WHERE email = '"+email+"'", (err, result, fields) =>{
         if(err) {
             throw err;
         }
         console.log(result);
-        res.send(result);
+        var row = result[0];
+        var dbPassword = row.password;
+        var dbEmail = row.email;
+        if(dbPassword === password && dbEmail === email){
+            res.send("user verified");
+        } else {
+            res.send("Email or password is incorrect");
+        }
     })
 };
 

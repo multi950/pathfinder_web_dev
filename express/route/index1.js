@@ -13,10 +13,6 @@ router.get("/user", (req, res) => {
     repository.getEmails(req, res);
 });
 
-router.post("/user", (req, res) => {
-    repository.createUser(req, res);
-});
-
 router.get("/user/email", (req, res) => {
     repository.getEmailPassword(req, res);
 });
