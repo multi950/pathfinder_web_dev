@@ -31,7 +31,7 @@ const signUp = function(req, res) {
 
 
 const createUser = function(email, password){
-    connections.query("INSERT INTO actor(first_name, last_name) VALUES (?, ?)",[email, password], (err, result)=>{
+    connections.query("INSERT INTO user(email, password) VALUES (?, ?)",[email, password], (err, result)=>{
         if(err) {
             throw err;
         }
@@ -52,8 +52,8 @@ const login = function(req, res) {
                 data: "Invalid email or password email"
             });
         }
-        console.log(result[0].last_name);
-        if(password===result[0].last_name){
+    
+        if(password===result[0].password){
             const token = jwt.sign({
                 email: email
             },
