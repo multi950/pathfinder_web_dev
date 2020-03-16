@@ -1,22 +1,28 @@
 $(document).ready( function()
 {
-    $('form.ajaxForm').submit(function()
+    const $form = $('form.ajaxForm');
+    $form.submit(function()
     {
-        var formData = $(this).serialize();
-
-        console.log("Data in form" + formData);
-        $.ajax({
+        var formData = $form.serialize();
+        var ajaxOptions = {
             url: $(form).attr('action'),
             type:$(form).attr('method'),
             data: formData,
             dataType: 'json',
             processData: false,
+            beforeSubmit : showRequest,
             success : function(data){
-                    
+                console.log("you received data: " + data);
             }
-        }).done(function(ResJryVar)
-        {
-            console.log(ResJryVar);
-        });
+        }
+        console.log("Data in form" + formData);
+        $.ajax(ajaxOptions);
+        return false;
     })
 });
+
+function showRequest(formData, jqForm, options){
+    var queryString = $.param(formData); 
+    alert('About to submit: \n\n' + queryString); 
+    return true; 
+}
