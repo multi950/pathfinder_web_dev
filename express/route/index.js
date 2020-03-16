@@ -1,35 +1,21 @@
+/**
+ * General routes.
+ */
 "use strict";
 
-var express = require("express");
-const router  = express.Router();
-const connections = require("../database/connector")
-
-/*Load all saved characters*/
-
+var express = require('express');
+var router  = express.Router();
+const repository = require("../database/remoteRepository");
+const checkAuth = require("../middleware/check-auth");
 
 
-router.get("/character", (req, res) => {
-    connections.query('SELECT * FROM character', (err, result, fields) =>{
-        if(err) {
-            throw err;
-        }
-        console.log(result);
-        res.send(result);
-    })
+router.post("/users", (req, res) => {
+    console.log(req.body);
+    repository.signUp(req, res);
 });
 
-
-router.get("/user/character", (req, res) => {
-    var userid = req.body.userid;
-    var characters = connector.loadCharacters(userid);
-    res.send(characters);
-});
-
-/*Create a new character*/
-router.post("/user/character", (req, res) => {
-    var userid = req.body.userid;
-    var description = req.body.description;
-    connector.saveCharacter(userid,description);
+router.post("/login", (req, res) => {
+    repository.login(req, res);
 });
 
 module.exports = router;
