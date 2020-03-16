@@ -2,14 +2,46 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/general_style.css">
+    <link rel="stylesheet" href="/../css/general_style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="content">
-    <input type="text" placeholder="Email" id="email" name="email"><br>
-    <input type="password" placeholder="Password" id="password" name="password"><br>
-    <button type="button" onclick="location.href='logged_in.html'">Log in</button>
+    <form class="ajax" action="/user/email" method="post">
+        <input type="email" placeholder="Email" name="email"><br>
+        <input type="password" placeholder="Password" name="password"><br>
+        <input type="submit" value="Log in"/>
+    </form>
+
+
+    <script>
+        $('form.ajax').on('submit', function(){
+        var form = $(this);
+        var url = form.attr('action');
+        var type = form.attr('method');
+        var data = {};
+        form.find(['name']).each(function(index, value){
+            var that = $(this);
+            name = that.attr('name');
+            value = that.val();
+
+            data[name] = vale;
+        });
+        $.ajax({
+            url : url,
+            type : type,
+            dataType : "json",
+            data : $form.serialize(), 
+            success: (data) => {
+                alert(data);
+            }
+        })
+        return false;
+    });
+
+    </script>
+
 </div>
 </body>
 

@@ -2,16 +2,32 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/general_style.css">
+
+    <link rel="stylesheet" href="/../css/general_style.css" type="text/css">
+
+    <script>
+        function validatePasswords() {
+            var password = document.forms["loginForm"]["password"].value;
+            var rewrite_password = document.forms["loginForm"]["rewrite_password"].value;
+            if (password != rewrite_password) {
+                alert("Passwords does not match");
+                return false;
+            }
+        }
+    </script>
+
 </head>
 
 <body>
     <div class="content">
-    <input type="text" placeholder="Email" id="email" name="email"><br>
-    <input type="password" placeholder="Password" id="password" name="password"><br>
-    <input type="password" placeholder="Repeat password" id="password" name="password"><br>
-    <button type="button" onclick="">Register</button>
-</div>
+        <form name="loginForm" action="/register" method="post">
+            <input type="email" placeholder="Email" name="email"><br>
+            <input type="password" placeholder="Password" name="password"><br>
+            <input type="password" placeholder="Re-write password" name="rewrite_password"><br>
+            <input type="submit" value="Send Data" />
+        </form>
+    </div>
+
 </body>
 
 </html>

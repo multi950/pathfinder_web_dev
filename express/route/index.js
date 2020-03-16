@@ -10,9 +10,6 @@ const connections = require("../database/connector")
 
 router.get("/character", (req, res) => {
     connections.query('SELECT * FROM character', (err, result, fields) =>{
-        if(err) {
-            throw err;
-        }
         console.log(result);
         res.send(result);
     })

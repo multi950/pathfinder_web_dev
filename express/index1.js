@@ -5,14 +5,16 @@
 
 const port    = process.env.DBWEBB_PORT || 1337;
 const express = require("express");
+var path = require('path');
 const app     = express();
 const routeIndex = require("./route/index1.js");
 const middleware = require("./middleware/index.js");
 
 app.use(middleware.logIncomingToConsole);
+app.use(express.static(path.join(__dirname,  "../web/css/")));
+app.use(express.static(path.join(__dirname, "../web/html/")));
 app.use("/", routeIndex);
-app.listen(port, logStartUpDetailsToConsole);
-
+app.listen(port, logStartUpDetailsToConsole)
 
 
 /**

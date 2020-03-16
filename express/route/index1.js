@@ -5,16 +5,42 @@
 
 var express = require('express');
 var router  = express.Router();
+
 const connections = require("../database/connector");
 const repository = require("../database/remoteRepository");
+
+var bodyParser = require('body-parser')
+router.use(bodyParser.urlencoded({ extended: false }))
+router.use(bodyParser.json())
+
+//TESTING
+router.post("/register", (req, res) => {
+    console.log(req.body);
+    repository.createUser(req, res);
+    
+});
 
 
 router.get("/user", (req, res) => {
     repository.getEmails(req, res);
 });
 
-router.get("/user/email", (req, res) => {
+router.post("/user/email", (req, res) => {
+    console.log("request body:");
+    console.log(req.body);
     repository.getEmailPassword(req, res);
+});
+//FOR TESTING
+router.get("/user/email", (req, res) => {
+    console.log("request query:");
+    console.log(req.query);
+    repository.getEmailPassword(req, res);
+});
+//TESTING
+router.post("/test", (req, res) => {
+    console.log("request body:");
+    console.log(req.body);
+    res.json({success : true})
 });
 
 router.get("/character", (req, res) => {

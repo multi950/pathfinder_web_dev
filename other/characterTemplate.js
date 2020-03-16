@@ -1,4 +1,4 @@
-var characterTemplate = {
+const characterTemplate = {
     "name": "Erandiel",
     "alignment": "ln",
     "gender": "male",
@@ -41,6 +41,4 @@ var characterTemplate = {
     "languages": ["Common", "Elvish", "Primal", "Celestial", "Abyssal", "Draconic"]
 };
 
-(function(){
-console.log(characterTemplate.class)
-}())
+module.exports = characterTemplate;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/../css/general_style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var form = $(this);
+                var url = form.attr('action');
+                var type = form.attr('method');
+                var data = form.serialize();
+                console.log('making ajax request to:', url);
+        var options = { 
+        url: requestURL,
+        type: 'post',
+        dataType: 'json', 
+        data: data,
+        success: function(data){
+            console.log('You received some data!', data);
+        }
+    }; 
+ 
+$('#ajax').ajaxForm(options);
+}); 
+      
+    </script>
+
+</head>
+
+<body>
+    <div class="content">
+        <form id="ajax" action="/test" method="post">
+            <input type="email" placeholder="Email" name="email"><br>
+            <input type="password" placeholder="Password" name="password"><br>
+            <input type="submit"  />
+        </form>
+        <button id="readButton">readButton</button>
+    </div>
+</body>
+
+</html>

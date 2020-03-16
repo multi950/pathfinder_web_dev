@@ -1,5 +1,4 @@
 "use strict";
-
 const connections = require("./connector")
 
 //Sign up queries
@@ -20,12 +19,12 @@ const getEmails = function(req, res) {
     })
 };
 
-const createUser = function(email, password){
-    connections.query("INSERT INTO user(email, password) VALUES ('"+email+"', '"+password+"'", (err, result)=>{
+const createUser = function(req, res){
+    connections.query("INSERT INTO user(email, password) VALUES ('"+req.body.email+"', '"+req.body.password+"')", (err, result)=>{
         if(err) {
             throw err;
         }
-        res.send("character created");
+        res.status(200).redirect(301, "logged_in.html");
     })
 };
 
@@ -33,19 +32,24 @@ const createUser = function(email, password){
 const getEmailPassword = function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
+    console.log(req.body.email);
     connections.query("SELECT email, password FROM user WHERE email = '"+email+"'", (err, result, fields) =>{
         if(err) {
             throw err;
         }
-        console.log(result);
+        if(result[0] == undefined){
+            res.status(200).send({success : true});
+        }else{ 
+        console.log("result "+result[0]);
         var row = result[0];
         var dbPassword = row.password;
         var dbEmail = row.email;
         if(dbPassword === password && dbEmail === email){
-            res.send("user verified");
+            res.json({success: true});
         } else {
             res.send("Email or password is incorrect");
         }
+    }
     })
 };
 
