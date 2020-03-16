@@ -1,43 +1,77 @@
 "use strict";
 
-const connections = require("./connector")
+const connections = require("./connector");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 //Sign up queries
-const getEmails = function(req, res) {
-    connections.query('SELECT email FROM user', (err, result, fields) =>{
-        if(err) {
-            throw err;
+const signUp = function(req, res) {
+    var userEmail = req.body.email;
+    connections.query('SELECT email FROM user where email = ?', [userEmail], (err, result, fields) =>{ 
+    if(err) {
+        throw err;
+    }
+    var userPassword = req.body.password;
+    if(!result.length){
+        console.log("hmm");
+        createUser(userEmail, userPassword);
+        res.json({
+            success:1,
+            message: "account created"
+        });
+    } else {
+        res.json({
+            success:0,
+            message: "account with that email already exist"
+            });
         }
-        var userEmail = req.body.email;
-        var userPassword = req.body.password;
-        Object.keys(result).forEach(function(key){
-            var tempEmail = result[key];
-            if(tempEmail === userEmail){
-                createUser(userEmail, userPassword);
-            }
-        })
-        console.log(result);
     })
 };
 
+
+
 const createUser = function(email, password){
-    connections.query("INSERT INTO user(email, password) VALUES ('"+email+"', '"+password+"'", (err, result)=>{
+    connections.query("INSERT INTO actor(first_name, last_name) VALUES (?, ?)",[email, password], (err, result)=>{
         if(err) {
             throw err;
         }
-        res.send("character created");
     })
 };
 
 //login queries
-const getEmailPassword = function(req, res) {
+const login = function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     connections.query("SELECT email, password FROM user WHERE email = '"+email+"'", (err, result, fields) =>{
         if(err) {
             throw err;
         }
-        console.log(result);
+        if(!result.length){
+            return json({
+                success:0,
+                data: "Invalid email or password email"
+            });
+        }
+        console.log(result[0].last_name);
+        if(password===result[0].last_name){
+            const token = jwt.sign({
+                email: email
+            },
+            process.env.JWT_KEY, {
+                expiresIn: "1h"
+            });
+            return res.json({
+                success:1,
+                message: "login successfully",
+                token: token
+            });
+        } else {
+            return res.json({
+                success:0,
+                data: "Invalid email or password password"
+            });
+        }
+       /* console.log(result);
         var row = result[0];
         var dbPassword = row.password;
         var dbEmail = row.email;
@@ -45,8 +79,8 @@ const getEmailPassword = function(req, res) {
             res.send("user verified");
         } else {
             res.send("Email or password is incorrect");
-        }
-    })
+        }*/
+    });
 };
 
 //Load all characters
@@ -186,9 +220,9 @@ const getClassFeats = function(req, res){
 };
 
 module.exports = {
-    getEmails: getEmails,
+    signUp: signUp,
     createUser: createUser,
-    getEmailPassword: getEmailPassword,
+    login: login,
     getCharacters: getCharacters,
     createCharacter: createCharacter,
     updateCharacter: updateCharacter,
