@@ -28,7 +28,7 @@ router.put("/:id", checkAuth, (req, res) => {
     repository.updateCharacter(req, res);
 });
 
-router.delete("/:id", checkAuth, checkAuth, (req, res) => {
+router.delete("/:id", checkAuth, (req, res) => {
     repository.deleteCharacter(req, res);
 });
 
@@ -40,7 +40,7 @@ router.get("/:id/heritage", checkAuth, (req, res) => {
     repository.getHeritages(req, res);
 });
 
-router.get("/:id/ancestryFeat", checkAuth, checkAuth, (req, res) => {
+router.get("/:id/ancestryFeat", checkAuth, (req, res) => {
     repository.getAncestryFeats(req, res);
 });
 
@@ -64,14 +64,5 @@ router.get("/:id/classfeat", checkAuth, (req, res) => {
     repository.getClassFeats(req, res);
 });
 
-/*
-router.get("/character/create", (req, res) => {
-    var userid = req.body.userid;
-    var json = req.body.description;
-    connections.query('INSERT INTO Character (“JSON”, “ID”) VALUES(“'+json+'”,”'+userid+'”)', function(err, result){
-        if(err) throw err;
-        res.send('character has been created');
-    })
-});*/
 
 module.exports = router;
