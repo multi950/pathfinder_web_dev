@@ -1,4 +1,4 @@
-export function handleForm(formID, responseHandler){
+export function handleForm(formID, responseHandler, formValid = function(){return true}){
 
 
     const form = $('#'+formID);
@@ -6,6 +6,11 @@ export function handleForm(formID, responseHandler){
 
     function handleForm(e) {
         e.preventDefault();
+
+
+        if(!formValid()){
+            return;
+        }
 
         console.log("cookie: "+decodeURIComponent(document.cookie))
 
@@ -15,13 +20,13 @@ export function handleForm(formID, responseHandler){
             data: form.serialize(),
             dataType: 'json',
             processData: false,
-            headers : {
-                authorization : "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ik11bHRpOTUwQGdtYWlsLmNvbSIsImlhdCI6MTU4NDQ0NjExMCwiZXhwIjoxNTg0NDQ5NzEwfQ.uYfCrLTNq6WuyvCaDOEjB_aC_JX6tohTgVvRG5PvMyw"
+            beforeSubmit: function() {
+
             },
             success: function (data) {
                 console.log("you received data: ");
                 var resultData = data.result;
-                console.log( resultData[1].id);
+                console.log(resultData);
             }
         }
         console.log("Data in form");
