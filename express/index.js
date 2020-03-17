@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const port    = process.env.DBWEBB_PORT || 1337;
 const express = require("express");
+const path = require("path");
 const app     = express();
 const routeIndex = require("./route/index.js");
 const routeCharacters = require("./route/charactersRoute.js");
@@ -13,6 +14,9 @@ const bodyParser = require("body-parser");
 
 app.use(middleware.logIncomingToConsole);
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname,  "../web/css/")));
+app.use(express.static(path.join(__dirname, "../web/html/")));
+app.use(express.static(path.join(__dirname, "../web/")));
 app.use("/", routeIndex);
 app.use("/characters", routeCharacters);
 app.listen(port, logStartUpDetailsToConsole);

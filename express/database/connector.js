@@ -4,7 +4,7 @@ const databaseCredentials = {
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'sakila'
+  database: 'pfc'
 };
 
 const connection = mysql.createConnection(databaseCredentials);

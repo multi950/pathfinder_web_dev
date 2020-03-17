@@ -42,18 +42,19 @@ const createUser = function(email, password){
 const login = function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
+    console.log(req.body);
     connections.query("SELECT email, password FROM user WHERE email = '"+email+"'", (err, result, fields) =>{
         if(err) {
             throw err;
         }
-        if(!result.length){
-            return json({
+        if(!result.length || result[0] == undefined){
+            res.json({
                 success:0,
                 data: "Invalid email or password email"
             });
         }
     
-        if(password===result[0].password){
+        else if(password===result[0].password){
             const token = jwt.sign({
                 email: email
             },

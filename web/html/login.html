@@ -4,17 +4,31 @@
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../javascript/ajax/form_handler.js" ></script>
+    
 </head>
 
 <body>
-    <form class="ajaxForm" >
-        <div class="content" action="/login" method="post">
-        <input type="email" placeholder="Email" id="email" name="email"><br>
-        <input type="password" placeholder="Password" id="password" name="password"><br>
-        <input type="submit" value="Log in"></b>
-    </form>
-</div>
+    <div class="content">
+        <form id="loginForm" action="/login" method="post">
+            <input type="email" placeholder="Email" id="email" name="email"><br>
+            <input type="password" placeholder="Password" id="password" name="password"><br>
+            <input type="submit" value="Log in"></b>
+        </form>
+    </div>
+
+    <script type="module">
+    import { handleForm } from "../javascript/ajax/forms.js";
+    
+    handleForm("#loginForm", function(response){
+        if(response.success == 1){
+            console.log("correct email and pass")
+        } else {
+            console.log("incorrect email or pass")
+        }
+    });
+
+    </script>
+
 </body>
 
 </html>
