@@ -21,13 +21,19 @@
     
     handleForm("loginForm", function(response){
         if(response.success == 1){
-            console.log("correct email and pass")
+            document.cookie = ("Authorization="+response.token);
+            console.log("correct email and pass");
+            console.log(document.cookie);
+            
         } else {
             console.log("incorrect email or pass")
         }
     });
+ </script>
 
-    </script>
+    <button value="button" onClick=""></button>
+
+
 
 </body>
 
