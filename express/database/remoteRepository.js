@@ -86,12 +86,14 @@ const login = function(req, res) {
 
 //Load all characters
 const getCharacters = function(req, res) {
-    connections.query('SELECT * FROM actor', (err, result, fields) =>{
+    connections.query('SELECT * FROM characters', (err, result, fields) =>{
         if(err) {
             throw err;
         }
-        console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -99,7 +101,7 @@ const getCharacters = function(req, res) {
 const createCharacter = function(req, res){
     information = req.body.information;
     user_email = req.body.user_email;
-    connections.query("INSERT INTO character(information, user_email) VALUES('"+information+"','"+user_email+"'", (err, result)=>{
+    connections.query("INSERT INTO characters(information, user_email) VALUES('"+information+"','"+user_email+"'", (err, result)=>{
         if(err) {
             throw err;
         }
@@ -112,7 +114,7 @@ const updateCharacter = function(req, res){
     information = req.body.information;
     user_email = req.body.user_email;
     characterid = req.body.characterid;
-    connections.query("UPDATE Character SET JSON = “JSON” WHERE id = "+id+" AND user_email = '"+user_email+"'", (err, result)=>{
+    connections.query("UPDATE characters SET JSON = “JSON” WHERE id = "+id+" AND user_email = '"+user_email+"'", (err, result)=>{
         if(err) {
             throw err;
         }
@@ -124,7 +126,7 @@ const updateCharacter = function(req, res){
 const deleteCharacter = function(req, res){
     user_email = req.body.user_email;
     characterid = req.body.characterid;
-    connections.query("DELETE FROM character WHERE id = "+characterid+" AND user_email = '"+user_email+"'", (err, result)=>{
+    connections.query("DELETE FROM characters WHERE id = "+characterid+" AND user_email = '"+user_email+"'", (err, result)=>{
         if(err) {
             throw err;
         }
