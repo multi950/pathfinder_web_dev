@@ -13,6 +13,7 @@ const middleware = require("./middleware/index.js");
 const bodyParser = require("body-parser");
 
 app.use(middleware.logIncomingToConsole);
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,  "../web/css/")));
 app.use(express.static(path.join(__dirname, "../web/html/")));

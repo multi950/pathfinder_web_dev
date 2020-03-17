@@ -1,7 +1,7 @@
 export function handleForm(formID, responseHandler){
 
 
-    const form = $(formID);
+    const form = $('#'+formID);
     form.on('submit', handleSignup);
 
     function handleSignup(e) {
@@ -11,7 +11,7 @@ export function handleForm(formID, responseHandler){
         const options = {
             url: (form).attr('action'),
             type: (form).attr('method'),
-            data: JSON.stringify(form),
+            data: form.serialize(),
             dataType: 'json',
             processData: false,
             success: function (data) {
@@ -19,7 +19,7 @@ export function handleForm(formID, responseHandler){
             }
         }
         console.log("Data in form");
-        console.log(form.serialize());
+        console.log(JSON.stringify(form));
         $.ajax(options)
             .fail(err => console.log(err))
             .done(response => {
