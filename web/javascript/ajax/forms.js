@@ -15,11 +15,13 @@ export function handleForm(formID, responseHandler){
             data: form.serialize(),
             dataType: 'json',
             processData: false,
-            header : {
-                Authorization : "null"
+            headers : {
+                authorization : "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ik11bHRpOTUwQGdtYWlsLmNvbSIsImlhdCI6MTU4NDQ0NjExMCwiZXhwIjoxNTg0NDQ5NzEwfQ.uYfCrLTNq6WuyvCaDOEjB_aC_JX6tohTgVvRG5PvMyw"
             },
             success: function (data) {
-                console.log("you received data: " + JSON.stringify(data));
+                console.log("you received data: ");
+                var resultData = data.result;
+                console.log( resultData[1].id);
             }
         }
         console.log("Data in form");

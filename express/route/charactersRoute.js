@@ -11,12 +11,9 @@ const checkAuth = require("../middleware/check-auth");
 
 router.get("/", checkAuth, (req, res) => {
     console.log(req.userData);
-    if(req.userData.email!=="UlaUla"){
+    if(req.userData.email!=="Multi950@gmail.com"){
         console.log("Cheese");
     }
-    res.json({
-        message: "Not allowed"
-    });
     repository.getCharacters(req, res);
 });
 
