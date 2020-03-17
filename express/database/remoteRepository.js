@@ -35,16 +35,19 @@ const createUser = function(email, password){
     bcrypt.hash(password, 10, (err, hash) => {
         if(err){
             return res.status(500).json({
+                success: 0,
                 error: err
             });
         } else {
             connections.query("INSERT INTO user(email, password) VALUES (?, ?)",[email, hash], (err, result)=>{
                 if(err) {
                     res.status(500).json({
+                        success: 0,
                         error: err
                     });
                 } else {
                     res.status(201).json({
+                        success: 1,
                         message: "user created"
                     });  
                 }
@@ -71,6 +74,7 @@ const login = function(req, res) {
         bcrypt.compare(user_password, result[0].password, (err, result) => {
             if(err){
                 return res.status(401).json({
+                    success: 0,
                     message: "Auth failed"
                 });
             } else if(result) {
@@ -81,11 +85,13 @@ const login = function(req, res) {
                     expiresIn: "1h"
                 });
                 return res.status(200).json({
+                    success: 1,
                     message: "Auth successful",
                     token: token
                 });
             }
             res.status(401).json({
+                success: 0,
                 message: "Auth failed"
             });
         }) ;
