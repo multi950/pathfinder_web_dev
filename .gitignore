@@ -2,6 +2,7 @@
 # JS gitignore		                #
 #---------------------------------------#
 
+.env
 # output
 /.temp
 /.tmp
@@ -9,7 +10,7 @@
 /dist
 
 # dependencies
-/node_modules
+
 .package.swp
 
 # linters

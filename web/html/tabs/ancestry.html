@@ -3,29 +3,47 @@
 
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../javascript/content_filler.js"></script>
+    <script src="../javascript/ancestry.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <h3>Ancestry </h3>
-        <select id="ancestry">
-            <option value="ancestry">ancestry</option>
-        </select>
-        <br>
-        <select id="Heritage">
-            <option value="Heritage">Heritage</option>
-        </select>
-        <br>
-        <select id="ancestry_feat">
-            <option value="ancestry_feat">Ancestry feat</option>
-        </select>
-        <div class="ability_score_container">
-            <select id="boost">
-                <option value="boost">boost</option>
-            </select>
 
-        </div>
+        <form>
+            <h3>Ancestry </h3>
+            <select id="ancestrySelect">
+                <option id=undefined selected="selected"> Ancestry
+                </option>
+            </select>
+            <br>
+            <select id="heritageSelect">
+                <option selected="selected"> Heritage
+                </option>
+            </select>
+            <br>
+            <select id="ancestryFeatSelect">
+                <option selected="selected"> AncestryFeat
+                </option>
+            </select>
+            <br>
+            <div class="ability_score_container">
+                <select>
+                    <option selected="selected"> test
+                    </option>
+                </select>
+                <script>
+                   
+                </script>
+            </div>
+        </form>
+
+
     </div>
+    </div>
+
+
 </body>
 
 </html>
