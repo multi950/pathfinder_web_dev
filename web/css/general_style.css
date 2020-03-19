@@ -18,7 +18,11 @@ margin: 0px;
 .content > p {
     width: fit-content;
 }
-.content > h4{
+.content h4{
+    font-weight: 400;
+    margin-top: 8px;
+}
+.content input{
     font-weight: 400;
     margin-top: 8px;
 }

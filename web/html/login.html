@@ -16,40 +16,7 @@
         </form>
     </div>
 
-    <div class="content">
-        <form id="testForm" action="/characters" method="get">
-            <input type="submit" value="test"></b>
-        </form>
-    </div>
-
-    <script type="module">
-    import { handleForm } from "../javascript/ajax/forms.js";
-    
-    handleForm("loginForm", function(response){
-        if(response.success == 1){
-            document.cookie = ("authorization="+response.token);
-            console.log("correct email and pass");
-            console.log(document.cookie);
-            
-        } else {
-            console.log("incorrect email or pass")
-        }
-    });    
-    
-    handleForm("testForm", function(response){
-        var responseData = response.result;
-        if(response.success == 1){
-            console.log("success");
-            console.log("ID = "+responseData[0].id);
-
-        } else {
-            console.log("insuccess")
-        }
-    });
- </script>
-
-
-
+<script type="module" src="../javascript/login.js"></script>
 
 </body>
 

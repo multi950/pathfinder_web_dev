@@ -21,7 +21,11 @@ router.post("/", checkAuth, (req, res) => {
     repository.createCharacters(req, res);
 });
 
-router.put("/:id", checkAuth, (req, res) => {
+router.get("/ancestries", (req, res) => {
+    repository.getAncestries(req, res);
+});
+router.put("/:id", (req, res) => {
+
     repository.updateCharacter(req, res);
 });
 
@@ -60,6 +64,18 @@ router.get("/:id/classfeature", checkAuth, (req, res) => {
 router.get("/:id/classfeat", checkAuth, (req, res) => {
     repository.getClassFeats(req, res);
 });
+<<<<<<< HEAD
 
+=======
+/*
+router.get("/character/create", (req, res) => {
+    var userid = req.body.userid;
+    var json = req.body.description;
+    connections.query('INSERT INTO Character (“JSON”, “ID”) VALUES(“'+json+'”,”'+userid+'”)', function(err, result){
+        if(err) throw err;
+        res.send('character has been created');
+    })
+});*/
+>>>>>>> ancestry_tab
 
 module.exports = router;
