@@ -15,7 +15,7 @@ const signUp = function(req, res) {
     var user_password = req.body.password;
     if(!result.length){
         console.log("hmm");
-        createUser(user_email, user_password);
+        createUser(user_email, user_password, res);
         res.json({
             success:1,
             message: "account created"
@@ -31,7 +31,7 @@ const signUp = function(req, res) {
 
 
 
-const createUser = function(email, password){
+const createUser = function(email, password, res){
     bcrypt.hash(password, 10, (err, hash) => {
         if(err){
             return res.status(500).json({
@@ -95,18 +95,7 @@ const login = function(req, res) {
                 message: "Auth failed"
             });
         }) ;
-        /*if(user_password===result[0].password){
-            return res.json({
-                success:1,
-                message: "login successfully",
-                token: token
-            });
-        } else {
-            return res.json({
-                success:0,
-                data: "Invalid email or password password"
-            });
-        }*/
+        
     });
 };
 
@@ -127,12 +116,15 @@ const getCharacters = function(req, res) {
 const createCharacter = function(req, res){
     information = req.body.information;
     user_email = req.body.user_email;
-    connections.query("INSERT INTO character(information, user_email) VALUES(?, ?)",[information, user_email] (err, result)=>{
+    connections.query("INSERT INTO character(information, user_email) VALUES(?, ?)",[information, user_email], (err, result)=>{
 
         if(err) {
             throw err;
         }
-        res.send("character created");
+        res.status(200).json({
+            status: 1,
+            message: "Character created"
+        });
     })
 };
 
@@ -146,7 +138,10 @@ const updateCharacter = function(req, res){
         if(err) {
             throw err;
         }
-        res.send("character updated");
+        res.status(200).json({
+            status: 1,
+            message: "Character updated"
+        });
     })
 };
 
@@ -158,7 +153,10 @@ const deleteCharacter = function(req, res){
         if(err) {
             throw err;
         }
-        res.send("character deleted");
+        res.status(200).json({
+            status: 1,
+            message: "Character deleted"
+        });
     })
 };
 
@@ -169,7 +167,10 @@ const getAncestries = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -180,7 +181,10 @@ const getHeritages = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -191,7 +195,10 @@ const getAncestryFeats = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -202,7 +209,10 @@ const getBackgrounds = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -213,7 +223,10 @@ const getClasses = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -224,7 +237,10 @@ const getClassFeatures = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -235,7 +251,10 @@ const getClassOption = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
@@ -246,7 +265,10 @@ const getClassFeats = function(req, res){
             throw err;
         }
         console.log(result);
-        res.send(result);
+        res.json({
+            success : 1,
+            result : result
+        });
     })
 };
 
