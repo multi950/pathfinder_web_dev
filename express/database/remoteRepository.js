@@ -158,7 +158,7 @@ const getHeritages = function(req, res){
 
 //Load all ancestry feats
 const getAncestryFeats = function(req, res){
-    connections.query("SELECT * FROM feats INNER JOIN ancestry_has_feats AS ahf ON feat.id = ahf.feat_id", (err, result, fields) =>{
+    connections.query("SELECT * FROM feat INNER JOIN ancestry_has_feat AS ahf ON feat.id = ahf.feat_id", (err, result, fields) =>{
         if(err){
             throw err;
         }
@@ -213,7 +213,7 @@ const getClassOption = function(req, res){
 
 //Load class feats
 const getClassFeats = function(req, res){
-    connections.query("SELECT * FROM feat INNER JOIN class_has_feats AS chf ON feat.id = chf.feat_id", (err, result, fields) =>{
+    connections.query("SELECT * FROM feat INNER JOIN class_has_feat AS chf ON feat.id = chf.feat_id", (err, result, fields) =>{
         if(err){
             throw err;
         }

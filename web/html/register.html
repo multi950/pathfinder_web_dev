@@ -15,27 +15,9 @@
             <input type="submit" value="Register"></b>
         </form>
     </div>
-    <script type="module">
-        import { handleForm } from "../javascript/ajax/forms.js";
-        handleForm("registerForm", 
-        function(response){
-        if(response.success == 1){
-            console.log("Registration complete!");
-            window.location.href='login.html'
-        } else {
-            console.log("incorrect email or pass")
-        }
-    }, function(){
-        console.log($("#password").val());
 
-        if ($("#password").val() !== $("#verify_password").val()){
-            alert("Passwords mismatch");
-            console.log("mismatchpass");
-                return false;
-            }
-            else return true;
-        });    
-</script>
+    <script type="module" src="../javascript/register.js"></script>
+
 </body>
 
 </html>

@@ -12,7 +12,13 @@ var characterTemplate = {
         "feats": {
             1: 3
         },
-        "boosts": null
+        "boosts": [{
+            "name": "boostName",
+            "id": 1
+        }, {
+            "name": "boost2Name",
+            "id": 2
+        }]
     },
     "background": {
         "id": 1,
@@ -41,6 +47,6 @@ var characterTemplate = {
     "languages": ["Common", "Elvish", "Primal", "Celestial", "Abyssal", "Draconic"]
 };
 
-(function(){
-console.log(characterTemplate.class)
+(function () {
+    console.log(characterTemplate.class)
 }())

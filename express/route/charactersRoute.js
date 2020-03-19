@@ -23,7 +23,9 @@ router.post("/", (req, res) => {
     });
     //repository.createCharacters(req, res);
 });
-
+router.get("/ancestries", (req, res) => {
+    repository.getAncestries(req, res);
+});
 router.put("/:id", (req, res) => {
     repository.updateCharacter(req, res);
 });
@@ -67,7 +69,6 @@ router.get("/:id/classfeature", (req, res) => {
 router.get("/:id/classfeat", (req, res) => {
     repository.getClassFeats(req, res);
 });
-
 /*
 router.get("/character/create", (req, res) => {
     var userid = req.body.userid;
