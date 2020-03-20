@@ -12,10 +12,12 @@ import {
 
 
 function responseHandler(response) {
+
+    console.log(response);
     if (response.success == 1) {
         document.cookie = (
-            "authorization=" + response.token,
-            "email=" + $("#email").val()
+            "authorization=" + response.token+
+            ";email=" + $("#email").val()
         );
         window.location.href = 'logged_in.html'
     } else {

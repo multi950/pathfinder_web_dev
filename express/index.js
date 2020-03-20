@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,  "../web/css/")));
 app.use(express.static(path.join(__dirname, "../web/html/")));
 app.use(express.static(path.join(__dirname, "../web/")));
-app.use("/user", routeIndex);
+app.use("/users", routeIndex);
 app.use("/characters", routeCharacters);
 app.listen(port, logStartUpDetailsToConsole);
 

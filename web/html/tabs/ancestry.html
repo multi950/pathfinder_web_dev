@@ -4,46 +4,50 @@
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../javascript/content_filler.js"></script>
-    <script src="../javascript/ancestry.js"></script>
+    <script src="./../javascript/content_filler.js"></script>
+    <script src="./../javascript/ancestry.js"></script>
 </head>
 
 <body>
     <div class="content">
 
-        <form>
-            <h3>Ancestry </h3>
-            <select id="ancestrySelect">
-                <option id=undefined selected="selected"> Ancestry
-                </option>
-            </select>
-            <br>
-            <select id="heritageSelect">
-                <option selected="selected"> Heritage
-                </option>
-            </select>
-            <br>
-            <select id="ancestryFeatSelect">
-                <option selected="selected"> AncestryFeat
-                </option>
-            </select>
-            <br>
-            <div class="ability_score_container">
-                <select>
-                    <option selected="selected"> test
-                    </option>
-                </select>
-                <script>
-                   
-                </script>
-            </div>
-        </form>
+
+        <h3>Ancestry </h3>
+        <select id="ancestrySelect">
+        </select>
+        <br>
+
+        <div class="ancestryContent">
+
+            <p id="ancestryParagraph"></p>
+            <fieldset>
+                <legend>Heritage</legend>
+                <div id="heritage">
+
+                    <select id="heritageSelect"></select>
+                    <br>
+                    <p id="heritageParagraph"></p>
+
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Heritage</legend>
+                <div id="ancestryFeat">
+
+                    <select id="ancestryFeatSelect"></select>
+                    <br>
+                    <p id="ancestryFeatParagraph"></p>
+
+                </div>
+            </fieldset>
+            <div class="ability_score_container"></div>
+
+        </div>
+
 
 
     </div>
     </div>
-
-
 </body>
 
 </html>
