@@ -1,30 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="../css/general_style.css">
+    <link rel="stylesheet" href="../../css/general_style.css">
+    <title>Class</title>
 </head>
 
 <body>
-    <div class="content">
-        <h3>Class</h3>
-        <h4>Class</h4> <select id="character_class">
+<div class="content" id="information_container">
+    <h3 class="text_header">Class</h3>
+    <div id="class_header">
+        <Label for="character_class" class="text_header">Class: </Label>
+        <select id="character_class">
             <option value="character_class">Character class</option>
         </select>
         <br>
-        <select id="class_option">
-            <option value="class_option">Class option</option>
-        </select>
-        <br>
-        <select id="ability_score">
-            <option value="ability_score">Ability score</option>
-        </select>
-        <br>
-        <select id="class_feat">
-            <option value="class_feat">Class feat</option>
-        </select>
-
+        <text id="class_description">This is the class description</text>
     </div>
+    <br>
+    <table class="class_contrast_table">
+        <thead>
+        <tr>
+            <th><label for="ability_score">Key Ability</label></th>
+            <th>Hit Points</th>
+        </tr>
+        </thead>
+        <tr>
+            <td><select id="ability_score">
+                <option value="ability_score">Ability score</option>
+            </select></td>
+            <td>
+                <text id="class_hit_points">Hit points + your Constitution Modifier</text>
+            </td>
+        </tr>
+        <tr>
+            <td><text>At 1st level, your class gives you an ability boost, or an option to choose from.</text></td>
+            <td><text>You increase your maximum number of HP by this number at 1st level and every level thereafter. </text></td>
+        </tr>
+    </table>
+    <h5 class="text_header">DURING COMBAT ENCOUNTERS...</h5>
+    <text id="class_during_combat"></text>
+    <h5 class="text_header">DURING SOCIAL ENCOUNTERS...</h5>
+    <text id="class_during_social"></text>
+    <h5 class="text_header">WHILE EXPLORING...</h5>
+    <text id="class_while_exploring"></text>
+    <h5 class="text_header">IN DOWNTIME...</h5>
+    <text id="class_in_downtime"></text>
+    <h5 class="text_header">YOU MIGHT...</h5>
+    <text id="class_you_might"></text>
+    <h5 class="text_header">OTHERS PROBABLY...</h5>
+    <text id="class_others_probably"></text>
+    <br>
+    <label for="class_option" id="class_option_name">Class option: </label>
+    <select id="class_option">
+        <option value="class_option">Class option</option>
+    </select>
+    <br>
+    <label for="class_feat">Feat: </label><select id="class_feat">
+        <option value="class_feat">Class feat</option>
+    </select>
+</div>
+<div class="content" id="proficiencies_container">
+    <h5 class="text_header">INITIAL PROFICIENCIES</h5>
+    <text>At first level, you gain the listed proficiency ranks in the following statistics. You are untrained in
+        anything not listed unless you gain a better proficiency rank in some other way.
+    </text>
+    <br>
+    <h5 class="text_header">PERCEPTION</h5>
+    <text id="class_perception"></text>
+    <br>
+    <h5 class="text_header">SAVING THROWS</h5>
+    <text id="class_saving_throws"></text>
+    <br>
+    <h5 class="text_header">SKILLS</h5>
+    <text id="class_skills"></text>
+    <br>
+    <text>Trained in a number of skills equals to</text>
+    <text id="class_skill_modifier"></text>
+    <text> plus your Intelligence modifier</text>
+    <br>
+    <h5 class="text_header">ATTACKS</h5>
+    <text id="class_"></text>
+    <br>
+    <h5 class="text_header">DEFENSES</h5>
+    <text id="class_"></text>
+    <br>
+    <h5 class="text_header">CLASS DC</h5>
+    <text id="class_"></text>
+    <br>
+</div>
 </body>
 
 </html>
