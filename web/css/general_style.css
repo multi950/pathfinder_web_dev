@@ -7,7 +7,15 @@ body{
     font-family: Arial, serif;
 height: auto;
 width: auto;
-margin: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: var(--primary-color);
+}
+
+h5, h3{
+    padding-top: 10px;
+    color: var(--primary-color-dark);
+    font-weight: bold;
 }
 
 .content{
@@ -68,4 +76,21 @@ footer{
 
 footer > a {
     color: white;
+}
+
+#information_container{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+#proficiencies_container{
+    display: inline-block;
+    vertical-align: top;
+    width: 15%;
+}
+
+.class_contrast_table{
+    padding: 5px 10px 10px;
+    color: white;
+    background-color: var(--primary-color-dark);
 }
