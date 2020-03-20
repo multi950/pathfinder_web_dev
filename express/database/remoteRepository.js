@@ -16,10 +16,7 @@ const signUp = function(req, res) {
     if(!result.length){
         console.log("hmm");
         createUser(user_email, user_password, res);
-        res.json({
-            success:1,
-            message: "account created"
-        });
+
     } else {
         res.json({
             success:0,
@@ -79,7 +76,7 @@ const login = function(req, res) {
                 });
             } else if(result) {
                 const token = jwt.sign({
-                    email: email
+                    email: user_email
                 },
                 process.env.JWT_KEY, {
                     expiresIn: "1h"
