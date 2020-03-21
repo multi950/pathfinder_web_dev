@@ -7,6 +7,7 @@
      })
  }
  function populateSelectorDiv(divID, optionsList) {
+        
         for(var index = 0; index < optionsList.length; index++){
          var selectElement = document.createElement("select");
          selectElement.id = "boostSelect"+index;

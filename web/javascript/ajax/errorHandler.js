@@ -1,4 +1,5 @@
 (function addAjaxErrorHandler(){
+
     $( document ).ajaxError(function(event, jqxhr, settings, ajaxError) {
     if(jqxhr.status == 401){
 
