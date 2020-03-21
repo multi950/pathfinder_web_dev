@@ -4,15 +4,17 @@
 <head>
     <link rel="stylesheet" href="../../css/general_style.css">
     <title>Class</title>
+    <script src="../../javascript/handlers/cookie_service.js"></script>
+    <script src="../../javascript/handlers/repository.js"></script>
+    <script src="../../javascript/class.js"></script>
 </head>
 
 <body>
 <div class="content" id="information_container">
     <h3>Class</h3>
     <div id="class_header">
-        <Label for="character_class">Class: </Label>
-        <select id="character_class">
-            <option value="character_class">Character class</option>
+        <Label for="class_select">Class: </Label>
+        <select id="class_select">
         </select>
         <br>
         <p id="class_description">This is the class description</p>
@@ -21,13 +23,12 @@
     <table class="class_contrast_table">
         <thead>
         <tr>
-            <th><label for="ability_score">Key Ability</label></th>
+            <th><label for="class_ability_score_select">Key Ability</label></th>
             <th>Hit Points</th>
         </tr>
         </thead>
         <tr>
-            <td><select id="ability_score">
-                <option value="ability_score">Ability score</option>
+            <td><select id="class_ability_score_select">
             </select></td>
             <td>
                 <text id="class_hit_points"></text><text> + your Constitution Modifier</text>
@@ -54,12 +55,12 @@
     <h3 id="subclass_name" hidden>Subclass placeholder</h3>
     <p id="subclass_description" hidden></p><br>
 
-    <label for="subclass_option" hidden>Select: </label>
-    <select id="subclass_option" hidden>
+    <label for="subclass_select" hidden>Select: </label>
+    <select id="subclass_select" hidden>
     </select>
     <br>
-    <label for="class_feat">Feat: </label><select id="class_feat">
-        <option value="class_feat">Class feat</option>
+    <label for="class_feat" hidden>Feat: </label>
+    <select id="class_feat" hidden>
     </select>
 </div>
 <div class="content" id="proficiencies_container">
@@ -91,9 +92,5 @@
     <text id="class_dc"></text>
     <br>
 </div>
-
-<script src="../../../Services/cookie_service.js"></script>
-<script src="../../javascript/handlers/repository.js"></script>
-<script src="../../javascript/class.js" type="module"></script>
 </body>
 </html>

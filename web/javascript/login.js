@@ -17,7 +17,8 @@ function responseHandler(response) {
         document.cookie = (
             "authorization=" + response.token);
         document.cookie = (
-            "email=" + $("#email").val());
+            "email=" + $("#email").val()
+        );
         window.location.href = 'logged_in.html'
     } else {
         console.log("incorrect email or pass")

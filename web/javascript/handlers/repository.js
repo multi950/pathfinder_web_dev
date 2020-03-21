@@ -1,30 +1,20 @@
-
-export function getClasses(user){
-fetch("http://localhost:1337/users/" + user + "/class").then(response => {
-    return response.json();})
-    .then((data) => {
+async function getClasses(user){
+    const response = await fetch("http://localhost:1337/users/" + user + "/class");
+    const data = await response.json();
     return data.result;
-    });
 }
-export function getSubClasses(user){
-    fetch("http://localhost:1337/users/" + user + "/subclass").then(response => {
-        return response.json();})
-        .then((data) => {
-            return data.result;
-        });
+async function getSubClasses(user) {
+    const response = await fetch("http://localhost:1337/users/" + user + "/subclass");
+    const data = await response.json();
+    return data.result;
 }
-export function getClassFeats(user){
-    fetch("http://localhost:1337/users/" + user + "/classfeat").then(response => {
-        return response.json();})
-        .then((data) => {
-            return data.result;
-        });
+async function getClassFeats(user){
+    const response = await fetch("http://localhost:1337/users/" + user + "/classfeat");
+    const data = await response.json();
+    return data.result;
 }
-
-export function getClassFeatures(user){
-    fetch("http://localhost:1337/users/" + user + "/classfeature").then(response => {
-        return response.json();})
-        .then((data) => {
-            return data.result;
-        });
+async function getClassFeatures(user){
+    const response = await fetch("http://localhost:1337/users/" + user + "/classfeature");
+    const data = await response.json();
+    return data.result;
 }
