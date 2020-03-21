@@ -12,42 +12,108 @@
     <div class="content">
 
 
-        <h3>Ancestry </h3>
-        <select id="ancestrySelect">
-        </select>
-        <br>
 
         <div class="ancestryContent">
 
-            <p id="ancestryParagraph"></p>
-            <fieldset>
-                <legend>Heritage</legend>
-                <div id="heritage">
+            <div class="ancestryInfoContainer">
 
+                <h2>Ancestry</h2>
+
+                <select id="ancestrySelect">
+                </select>
+                <br>
+                <div class="ancestryInfo">
+                    <h3>Name</h3>
+                    <text class="ancestryName"></text>
+                    <h3>Size</h3>
+                    <text class="ancestrySize"></text>
+                    <h3>HP</h3>
+                    <text class="ancestryHP"></text>
+                    <h3>Speed</h3>
+                    <text class="ancestrySpeed"></text>
+                    <h3>Ability flaw</h3>
+                    <text class="ancestryAbilityFlaw"></text>
+                    <h3>Description</h3>
+                    <text class="ancestryDescription"></text>
+                    <h3>Special Abilities</h3>
+                    <text class="ancestrySpecialAbilities"></text>
+                    <h3>You might</h3>
+                    <text class="ancestryYouMight"></text>
+                    <h3>Others probably</h3>
+                    <text class="ancestryOthersProbably"></text>
+                    <h3>Alignment and religion</h3>
+                    <text class="ancestryAlignmentAndReligion"></text>
+                    <h3>Physical description</h3>
+                    <text class="ancestryPhysicalDescription"></text>
+                    <h3>Society</h3>
+                    <text class="ancestrySociety"></text>
+                    <h3>Names</h3>
+                    <text class="ancestryNames"></text>
+                    <h3>Sample names</h3>
+                    <text class="ancestrySampleNames"></text>
+                </div>
+
+            </div>
+
+            <div class="ancestryOtherInfo">
+
+                <div class="heritageContainer">
+                    <h2>Heritage</h2>
                     <select id="heritageSelect"></select>
                     <br>
-                    <p id="heritageParagraph"></p>
+                    <div id="heritageInfo">
+                        <h3>Name</h3>
+                        <text class="heritageName"></text>
+                        <div class="specialActionContainer">
+                            <h3>Special action</h3>
+
+                            <h4>Name</h4>
+                            <text class="heritageSpecialActionName"></text>
+                            <h4>Type</h4>
+                            <text class="heritageSpecialActionType"></text>
+                            <h4>Trigger</h4>
+                            <text class="heritageSpecialActionTrigger"></text>
+                            <h4>Description</h4>
+                            <text class="heritageSpecialActionDescription"></text>
+                        </div>
+                        <h3>Description</h3>
+                        <text class="heritageDescription"></text>
+                    </div>
 
                 </div>
-            </fieldset>
-            <fieldset>
-                <legend>Heritage</legend>
-                <div id="ancestryFeat">
 
+
+                <div class="ancestryFeatContainer">
+                    <h2>Ancestry feats</h2>
                     <select id="ancestryFeatSelect"></select>
                     <br>
-                    <p id="ancestryFeatParagraph"></p>
+                    <div id="ancestryFeatInfo">
+                        <h3>Name</h3>
+                        <text class="ancestryFeatName"></text>
+                        <h3>Action type</h3>
+                        <text class="ancestryFeatActionType"></text>
+                        <h3>Level</h3>
+                        <text class="ancestryFeatLevel"></text>
+                        <h3>Frequency</h3>
+                        <text class="ancestryFeatFrequency"></text>
+
+                        <h3>Description</h3>
+                        <text class="ancestryFeatDescription"></text>
+                    </div>
 
                 </div>
-            </fieldset>
-            <div class="ability_score_container"></div>
 
+                <div class="abilityScoreContainer">
+                    <h3>Ability score</h3>
+                    <select class="abilityScoreSelector"></select>
+                </div>
+            </div>
         </div>
 
 
 
     </div>
-    </div>
+
 </body>
 
 </html>

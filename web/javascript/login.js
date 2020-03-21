@@ -5,7 +5,6 @@ import {
 (function(){
     if (getCookie("email") != "")
         $("#email").val(getCookie("email"));
-
     handleForm("loginForm", responseHandler);
 }());
 
@@ -15,10 +14,14 @@ function responseHandler(response) {
 
     console.log(response);
     if (response.success == 1) {
+        
         document.cookie = (
-            "authorization=" + response.token+
-            ";email=" + $("#email").val()
+            "authorization=" + response.token
         );
+        document.cookie = (
+            "email=" + $("#email").val()
+        );
+         console.log("here")
         window.location.href = 'logged_in.html'
     } else {
         console.log("incorrect email or pass")
