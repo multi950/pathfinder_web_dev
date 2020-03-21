@@ -98,7 +98,8 @@ const login = function(req, res) {
 
 //Load all characters
 const getCharacters = function(req, res) {
-    connections.query('SELECT * FROM characters', (err, result, fields) =>{
+    const user_email = getCookie("email", req.headers.cookie);
+    connections.query('SELECT * FROM characters WHERE user_email = ?',[user_email], (err, result, fields) =>{
         if(err) {
             throw err;
         }
@@ -108,6 +109,22 @@ const getCharacters = function(req, res) {
         });
     })
 };
+
+function getCookie(cname, cookies) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(cookies);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 //Create a new character
 const createCharacter = function(req, res){
