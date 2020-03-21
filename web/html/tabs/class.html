@@ -15,7 +15,7 @@
             <option value="character_class">Character class</option>
         </select>
         <br>
-        <text id="class_description">This is the class description</text>
+        <p id="class_description">This is the class description</p>
     </div>
     <br>
     <table class="class_contrast_table">
@@ -30,7 +30,7 @@
                 <option value="ability_score">Ability score</option>
             </select></td>
             <td>
-                <text id="class_hit_points">Hit points + your Constitution Modifier</text>
+                <text id="class_hit_points"></text><text> + your Constitution Modifier</text>
             </td>
         </tr>
         <tr>
@@ -91,6 +91,9 @@
     <text id="class_dc"></text>
     <br>
 </div>
-</body>
 
+<script src="../../../Services/cookie_service.js"></script>
+<script src="../../javascript/handlers/repository.js"></script>
+<script src="../../javascript/class.js" type="module"></script>
+</body>
 </html>

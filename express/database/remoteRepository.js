@@ -243,7 +243,7 @@ const getClassFeatures = function(req, res){
 
 //Load all class options
 const getClassOption = function(req, res){
-    connections.query("SELECT * FROM class_option", (err, result, fields) =>{
+    connections.query("SELECT * FROM subclass", (err, result, fields) =>{
         if(err){
             throw err;
         }

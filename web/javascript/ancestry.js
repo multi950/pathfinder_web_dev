@@ -7,7 +7,8 @@ var currentHeritage;
 var currentAncestryFeats;
 var currentAncestryFeatID;
 var currentAncestryFeat;
-(function () {
+(function ()
+{
 
 
 
@@ -22,7 +23,7 @@ var currentAncestryFeat;
         })
         .fail(err => {});
     $(".ancestryContent").hide();
-}())
+}());
 
 
 
@@ -43,8 +44,6 @@ function onAncestryChange() {
 
 function updateContainer(containerID, objectList) {
     var currentID = $("#"+containerID+">select").val();
-    console.log(containerID);
-    console.log(objectList);
     var currentObject = getObjectFromList(currentID, objectList);
     $("#"+containerID+" > p ").text("");
     fillParagraph(currentObject, containerID+" > p");

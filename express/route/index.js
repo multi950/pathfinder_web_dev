@@ -38,7 +38,7 @@ router.get("/:id/class", checkAuth, (req, res) => {
     repository.getClasses(req, res);
 });
 
-router.get("/:id/classoption", checkAuth, (req, res) => {
+router.get("/:id/subclass", checkAuth, (req, res) => {
     repository.getClassOption(req, res);
 });
 
