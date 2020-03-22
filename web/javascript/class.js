@@ -32,10 +32,14 @@ async function get_data() {
 
 function onSelectChange(){
     let class_id = class_select.options[class_select.selectedIndex].value;
+    let class_name = class_select.options[class_select.selectedIndex].text;
     let subclass_id = subclass_select.options[subclass_select.selectedIndex].value;
     let class_ability_score = class_ability_score_select.options[class_ability_score_select.selectedIndex].value;
     let class_feat_id = class_feat_select.options[class_feat_select.selectedIndex].value;
-    writeClass(class_id, subclass_id, class_ability_score, class_feat_id);
+    let skill = class_skills.innerHTML;
+    skill = skill.substring(11,skill.length);
+    let skill_modifier = class_skill_modifier.innerHTML;
+    writeClass(class_id, class_name, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
 }
 
 function set_data() {
@@ -45,9 +49,9 @@ function set_data() {
             class_select_on_change(args)
         };
         class_select_on_change(args);
-        class_ability_score_select.onchange = () => {onSelectChange()};
-        class_feat_select.onchange = () => {onSelectChange()};
-        subclass_select.onchange = () => {onSelectChange()};
+        class_ability_score_select.onchange = onSelectChange;
+        class_feat_select.onchange = onSelectChange;
+        subclass_select.onchange = onSelectChange;
     })
 }
 
@@ -82,7 +86,6 @@ function class_select_on_change(args) {
     let class_feats = args[2];
     let class_features = args[3];
     let subclass_options = args[4];
-    console.log(subclass_options);
     const class_id = class_select.options[class_select.selectedIndex].value;
     let class_index = classes.findIndex((c) => parseInt(c.id) === parseInt(class_id));
     let subclass_index = subclasses.findIndex((s) => parseInt(s.class_id) === parseInt(class_id));
@@ -117,9 +120,7 @@ function class_select_on_change(args) {
         subclass_select.hidden = true;
     }
     class_feats_select_load(class_id, class_feats);
-    console.log(_class.proficiencies);
     let proficiencies = JSON.parse(_class.proficiencies);
-    console.log(proficiencies);
     let perception = proficiencies.perception;
     let fortitude = proficiencies.fortitude;
     let reflex = proficiencies.reflex;
