@@ -67,6 +67,7 @@ const _onCookieChanged = () => {
     class__feat.innerHTML = _class.feat_name;
     //ability scores
     let scores = generateAbilityScores(_class,_ancestry,_background);
+    ability_scores.innerHTML = "";
     for(const [score, value] of scores.entries()){
         let row = ability_scores.insertRow(0);
         let cell1 = row.insertCell(0);
