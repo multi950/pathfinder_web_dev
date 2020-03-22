@@ -30,10 +30,19 @@ function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, a
     console.log(document.cookie);
 }
 
+<<<<<<< HEAD
 function writeBackground(background_name, background_ability_boosts, background_skill){
     document.cookie = ("background_name" + background_name);
+=======
+
+function writeBackground(background_name, background_id, background_description, background_ability_boosts, background_skill){
+    document.cookie = ("background_name" + background_name);
+    document.cookie = ("background_id"+ background_id);
+    document.cookie = ("background_description" + background_description);
+>>>>>>> 34cfa970c819f0d7672347089a69cfcb4c6f5f17
     document.cookie = ("background_ability_boosts" + background_ability_boosts);
     document.cookie = ("background_skill" + background_skill);  
+
 
 }
 
@@ -49,8 +58,6 @@ function writeClass(class_name, class_id, subclass_option_name, subclass_option_
     document.cookie = ("class_feat="+class_feat_id);
     document.cookie = ("class_skill="+skill);
     document.cookie = ("class_skill_modifier="+skill_modifier);
-    //console.log(document.cookie);
-
 }
 
 function writeSelectedSkills(skills){
@@ -77,8 +84,14 @@ function readAncestry(){
 function readBackground(){
     return{
         background_name: getCookie("background_name"),
+<<<<<<< HEAD
+=======
+        background_id: getCookie("background_id"),
+        background_description: getCookie("background_description"),
+>>>>>>> 34cfa970c819f0d7672347089a69cfcb4c6f5f17
         background_ability_boosts: getCookie("background_ability_boosts"),
         background_skill: getCookie("background_skill")
+
     }
 }
 
@@ -92,7 +105,6 @@ function readClass(){
         skill: getCookie("class_skill"),
         skill_modifier: parseInt(getCookie("class_skill_modifier"))
     }
-
 }
 
 function readInheritedSkills(){
@@ -103,7 +115,6 @@ function readInheritedSkills(){
         skills.push(matches[i].substring(6,matches[i].length));
     }
     return skills;
-
 }
 
 function readSelectedSkills(){
