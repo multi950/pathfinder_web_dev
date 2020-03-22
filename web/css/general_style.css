@@ -5,11 +5,10 @@
 
 body{
     font-family: Arial, serif;
-height: auto;
-width: auto;
-    margin-left: 10%;
-    margin-right: 10%;
+    height: auto;
+    width: auto;
     background-color: var(--primary-color);
+    background-image: url("./../resources/img/table.jpg")
 }
 
 h5, h3{
@@ -104,8 +103,7 @@ footer > a {
 .ancestryContent > div {
     margin: 4px;
     padding: 14px;
-        width: 45%;
-        border: solid 1px black;
+    width: 45%;
 }
 .ancestryContent > .ancestryInfoContainer{
     
