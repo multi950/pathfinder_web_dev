@@ -19,19 +19,19 @@ function writeBasicInformation(name, description){
     document.cookie = ("description=" + description);
 }
 
-function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost, ancestry_feat_id){
+function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost,ancestry_feat_name, ancestry_feat_id){
     document.cookie = ("ancestry_name=" + ancestry_name);
     document.cookie = ("ancestry_id=" + ancestry_id);
     document.cookie = ("heritage_name=" + heritage_name);
     document.cookie = ("heritage_id=" + heritage_id);
     document.cookie = ("ancestry_ability_boost=" + ancestry_ability_boost);
-    document.cookie = ("ancestry_feat=" + ancestry_feat_id);
-    //console.log(document.cookie);
+    document.cookie = ("ancestry_feat_name=" + ancestry_feat_name);
+    document.cookie = ("ancestry_feat_id=" + ancestry_feat_id);
+    console.log(document.cookie);
 }
 
-function writeBackground(background_name, background_description, background_ability_boosts, background_skill){
+function writeBackground(background_name, background_ability_boosts, background_skill){
     document.cookie = ("background_name" + background_name);
-    document.cookie = ("background_description" + background_description);
     document.cookie = ("background_ability_boosts" + background_ability_boosts);
     document.cookie = ("background_skill" + background_skill);  
 
@@ -70,14 +70,13 @@ function readAncestry(){
         ancestry_id: getCookie("ancestry_id"),
         heritage_id: getCookie("heritage_id"),
         ability_boost: getCookie("ancestry_ability_boost"),
-        feat: getCookie("ancestry_feat")
+        feat_id: getCookie("ancestry_feat_id")
     }
 }
 
 function readBackground(){
     return{
         background_name: getCookie("background_name"),
-        background_description: getCookie("background_description"),
         background_ability_boosts: getCookie("background_ability_boosts"),
         background_skill: getCookie("background_skill")
     }
