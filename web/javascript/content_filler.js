@@ -3,7 +3,7 @@
          var optionElement = document.createElement("option");
          optionElement.value = option.id;
          optionElement.innerHTML = option.name;
-         $("#"+selectID).append(optionElement);
+         $(selectID).append(optionElement);
      })
  }
  function populateSelectorDiv(divID, optionsList) {

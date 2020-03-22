@@ -13,7 +13,7 @@ var currentAncestryFeat;
     $.get("/users/" + email + "/ancestry")
         .done(data => {
             ancestries = data.result;
-            populateSelect("ancestrySelect", ancestries);
+            populateSelect("#ancestrySelect", ancestries);
             onAncestryChange();
             $("#ancestrySelect").change(onAncestryChange);
             $("#heritageSelect").change(function() {
@@ -55,13 +55,13 @@ function populateSelectors(email) {
     $.get("/users/" + email + "/ancestryFeat").done(data => {
         $("#ancestryFeatSelect").empty();
         currentAncestryFeats = data.result;
-        populateSelect("ancestryFeatSelect", getObjectsFromList(currentAncestryID, data.result));
+        populateSelect("#ancestryFeatSelect", getObjectsFromList(currentAncestryID, data.result));
         setAncestryFeatInfo(getAncestryFeat($("#ancestryFeatSelect").val()));
     })
     $.get("/users/" + email + "/heritage").done(data => {
         $("#heritageSelect").empty();
         currentHeritages = data.result;
-        populateSelect("heritageSelect", getObjectsFromList(currentAncestryID, data.result));
+        populateSelect("#heritageSelect", getObjectsFromList(currentAncestryID, data.result));
         setHeritageInfo(getHeritage($("#heritageSelect").val()));
     });
 
