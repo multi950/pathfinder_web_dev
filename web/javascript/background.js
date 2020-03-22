@@ -23,7 +23,9 @@ function setBackground(background){
         console.log(background);
         $(".backgroundDescription").text(background.description);
         var ability_boosts = JSON.parse(background.ability_boosts).boosts;
-        console.log(ability_boosts)
+        setBoosts(ability_boosts);
+        var skills = JSON.parse(background.skill);
+        setSkills(skills);
 
 }
 
@@ -34,3 +36,51 @@ function getCurrentBackground(){
             return backgrounds[i];
     }
 }
+function setSkills(skills){
+    skills.forEach(skill => {
+        var skillOption = document.createElement("option");
+        skillOption.value = skill;
+        skillOption.innerHTML = skill;
+        $(".skillSelector").append(skillOption);
+    });
+}
+
+function setBoosts(abilityBoostsArray){
+    var boostIndex = 0;
+    abilityBoostsArray.forEach(abilityBoosts => {
+        
+        var abilityBoostsSelector = document.createElement("select");
+        abilityBoostsSelector.className = ("background_boost"+boostIndex++)
+
+        abilityBoosts.forEach(abilityBoost => {
+            var boostOption = document.createElement("option");
+            boostOption.value = abilityBoost;
+            boostOption.innerHTML = abilityBoost;
+            abilityBoostsSelector.appendChild(boostOption);
+        });
+   $(".backgroundAbilityScoresContainer").append(abilityBoostsSelector);
+   });
+}
+
+function example(){
+    loadExistingBackground({
+        "name" : "Bounty hunter",
+        "boosts" : ["Wisdom", "Strength"],
+        "skill" : "Survival skill"
+    });
+}
+
+function loadExistingBackground(background){
+    setSelectedOption("backgroundSelector", background.name)
+    var boostSelectorIndex = 0;
+    boosts = background.boosts;
+    boosts.forEach(selectorValue => {
+        setSelectedOption(".background_boost"+boostSelectorIndex++, selectorValue)
+    })
+    setSelectedOption(".skillSelector", background.skill);
+}
+
+function setSelectedOption(selectorID, value){
+    $(selectorID +" option[value='"+value+"']").prop('selected', true);
+}
+
