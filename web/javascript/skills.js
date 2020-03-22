@@ -15,7 +15,6 @@ Array.from(skill_inputs).forEach((input) => {
 
 const onCheckBoxChange = function(e){
     let input = e.target;
-
     if(input.checked){
         if(current_skill_points === 0){
             e.target.checked = false;
@@ -26,10 +25,12 @@ const onCheckBoxChange = function(e){
     }
     else
         selected_skills = selected_skills.filter((skill) => {return skill !== input.id});
-    console.log(selected_skills);
     current_skill_points = total_skill_points - selected_skills.length;
     skill_points_text.innerHTML = (current_skill_points);
-    writeSelectedSkills(selected_skills);
+    console.log("selected skills before writing: " + selected_skills);
+    console.log("selected skills length: " + selected_skills.length);
+    if(selected_skills.length > 0)
+        writeSelectedSkills(selected_skills.toString());
 };
 
 Array.from(skill_inputs).forEach((input) => input.onchange = onCheckBoxChange);
@@ -41,7 +42,8 @@ const onCookieChanged = () => {
        input.disabled = false;
     });
     inherited_skills = readInheritedSkills();
-    Array.from(skill_inputs).forEach((input) => {
+    let filtered_inputs = Array.from(skill_inputs).filter((input) => {return inherited_skills.includes(input.id.toLowerCase())});
+    filtered_inputs.forEach((input) => {
         if (inherited_skills.includes(input.id.toLowerCase())) {
             if(input.checked === true){
                 skill_points_text.innerHTML = ++current_skill_points + "";

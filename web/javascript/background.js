@@ -52,9 +52,10 @@ const onBackgroundSelectChange = function(backgrounds){
 
 const _onSelectChange = function(){
     let id = background_select.options[background_select.selectedIndex].value;
+    let name = background_select.options[background_select.selectedIndex].text;
     let boosts = getBoosts();
     let skill = background_skill.innerHTML;
-  writeBackground(id,boosts,skill);
+  writeBackground(id,name,boosts,skill);
   console.log(document.cookie);
 };
 

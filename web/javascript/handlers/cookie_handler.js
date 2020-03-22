@@ -26,28 +26,29 @@ function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, a
     document.cookie = ("heritage_id=" + heritage_id);
     document.cookie = ("ancestry_ability_boost=" + ancestry_ability_boost);
     document.cookie = ("ancestry_feat=" + ancestry_feat_id);
-    //console.log(document.cookie);
 }
 
-function writeBackground(background_id, background_ability_boosts, background_skill){
-    document.cookie = ("background_id=" + background_name);
+function writeBackground(background_id, background_name, background_ability_boosts, background_skill){
+    document.cookie = ("background_name="+background_name);
+    document.cookie = ("background_id=" + background_id);
     document.cookie = ("background_ability_boosts=" + background_ability_boosts);
     document.cookie = ("background_skill=" + background_skill);
 
 }
 
 
-function writeClass(class_name, class_id, subclass_option_name, subclass_option_id, subclass_name, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier){
+function writeClass(class_name, class_id, subclass_option_name, subclass_option_id, subclass_id, class_ability_score, class_feat_id,class_feat_name, skill, skill_modifier){
     document.cookie = ("class_name=" + class_name);
     document.cookie = ("class_id=" + class_id);
     document.cookie = ("subclass_option_name=" + subclass_option_name);
     document.cookie = ("subclass_option_id=" + subclass_option_id);
-    document.cookie = ("subclass_name="+subclass_name);
     document.cookie = ("subclass_id="+subclass_id);
     document.cookie = ("class_ability_score="+class_ability_score);
-    document.cookie = ("class_feat="+class_feat_id);
+    document.cookie = ("class_feat_id="+class_feat_id);
+    document.cookie = ("class_feat_name="+class_feat_name);
     document.cookie = ("class_skill="+skill);
     document.cookie = ("class_skill_modifier="+skill_modifier);
+    console.log(document.cookie)
 }
 
 function writeSelectedSkills(skills){
@@ -73,6 +74,7 @@ function readAncestry(){
 
 function readBackground(){
     return{
+        name: getCookie("background_name"),
         id: getCookie("background_id"),
         ability_boosts: getCookie("background_ability_boosts"),
         skill: getCookie("background_skill")
@@ -81,29 +83,40 @@ function readBackground(){
 
 function readClass(){
     return {
+        class_name: getCookie("class_name"),
+        subclass_option_name: getCookie("subclass_option_name"),
         class_id: getCookie("class_id"),
         subclass_option_id: getCookie("subclass_option_id"),
         subclass_id: getCookie("subclass_id"),
         ability_score: getCookie("class_ability_score"),
-        feat: getCookie("class_feat"),
+        feat_id: getCookie("class_feat_id"),
+        feat_name: getCookie("class_feat_name"),
         skill: getCookie("class_skill"),
         skill_modifier: parseInt(getCookie("class_skill_modifier"))
     }
 }
 
 function readInheritedSkills(){
-    const regex = /(skill=.*?)(?=;|$)/;
-    let matches = regex.exec(document.cookie);
+    const regex = /(skill=.*?)(?=;|$)/g;
+    let matches = document.cookie.match(regex);
+    console.log("matches: " + matches);
     let skills = [];
-    for(let i=1;i<matches.length;i+=2){
+    for(let i=0;i<matches.length;i++){
         skills.push(matches[i].substring(6,matches[i].length));
     }
+    console.log("inherited skills: " + skills);
     return skills;
 }
 
 function readSelectedSkills(){
-    let skills = getCookie("selected_skills");
-    return skills.split(",");
+    const regex = /(selected_skills=.*?)(?=;|$)/g;
+    let matches = document.cookie.match(regex);
+    let match = matches[0].substring(16, matches[0].length);
+    console.log("match length: " + match.length);
+
+    let skills = match.split(",");
+    console.log("skills after split: " + skills);
+    return skills;
 }
 
 function checkCookies(callback) {

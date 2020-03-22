@@ -36,10 +36,13 @@ function onSelectChange(){
     let subclass_id = subclass_select.options[subclass_select.selectedIndex].value;
     let class_ability_score = class_ability_score_select.options[class_ability_score_select.selectedIndex].value;
     let class_feat_id = class_feat_select.options[class_feat_select.selectedIndex].value;
+    let class_feat_name = class_feat_select.options[class_feat_select.selectedIndex].text;
     let skill = class_skills.innerHTML;
+    let subclass_option_name = subclass_select.options[subclass_select.selectedIndex].text;
+    let subclass_option_id = subclass_select.options[subclass_select.selectedIndex].value;
     skill = skill.substring(11,skill.length);
     let skill_modifier = class_skill_modifier.innerHTML;
-    writeClass(class_id, class_name, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
+    writeClass(class_name, class_id, subclass_option_name,subclass_option_id,subclass_id, class_ability_score, class_feat_id,class_feat_name, skill, skill_modifier);
 }
 
 function set_data() {
@@ -48,10 +51,10 @@ function set_data() {
         class_select.onchange = () => {
             class_select_on_change(args)
         };
-        class_select_on_change(args);
         class_ability_score_select.onchange = onSelectChange;
         class_feat_select.onchange = onSelectChange;
         subclass_select.onchange = onSelectChange;
+        class_select_on_change(args);
     })
 }
 
