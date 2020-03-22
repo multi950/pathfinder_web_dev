@@ -8,6 +8,13 @@ async function getSubClasses(user) {
     const data = await response.json();
     return data.result;
 }
+
+async function getSubclassOptions(user) {
+    const response = await fetch("http://localhost:1337/users/" + user + "/subclass_option");
+    const data = await response.json();
+    return data.result;
+}
+
 async function getClassFeats(user){
     const response = await fetch("http://localhost:1337/users/" + user + "/classfeat");
     const data = await response.json();

@@ -241,9 +241,23 @@ const getClassFeatures = function(req, res){
     })
 };
 
-//Load all class options
-const getClassOption = function(req, res){
+//Load all subclasses
+const getSubclasses = function(req, res){
     connections.query("SELECT * FROM subclass", (err, result, fields) =>{
+        if(err){
+            throw err;
+        }
+        console.log(result);
+        res.json({
+            success : 1,
+            result : result
+        });
+    })
+};
+
+//load all subclass options
+const getSubclassOptions = function(req,res){
+    connections.query("SELECT * FROM subclass_option", (err, result, fields) => {
         if(err){
             throw err;
         }
@@ -283,6 +297,8 @@ module.exports = {
     getBackgrounds: getBackgrounds,
     getClasses: getClasses,
     getClassFeatures: getClassFeatures,
-    getClassOption: getClassOption,
-    getClassFeats: getClassFeats
+    getClassFeats: getClassFeats,
+    getSubclasses: getSubclasses,
+    getSubclassOptions: getSubclassOptions
+
 };

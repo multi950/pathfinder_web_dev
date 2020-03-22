@@ -39,7 +39,11 @@ router.get("/:id/class", checkAuth, (req, res) => {
 });
 
 router.get("/:id/subclass", checkAuth, (req, res) => {
-    repository.getClassOption(req, res);
+    repository.getSubclasses(req, res);
+});
+
+router.get("/:id/subclass_option", checkAuth, (req,res) => {
+    repository.getSubclassOptions(req,res);
 });
 
 router.get("/:id/classfeature", checkAuth, (req, res) => {
