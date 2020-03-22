@@ -3,18 +3,23 @@
 
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../../javascript/handlers/cookie_handler.js"></script>
+    <script src="../../javascript/handlers/repository.js"></script>
+    <script src="../../javascript/content_filler.js"></script>
+    <script src="../../javascript/background.js"></script>
 </head>
 
 <body>
     <div class="content">
         <h3>background</h3>
-        <select id="background">
-            <option value="background">background</option>
-        </select>
+        <select class="backgroundSelector"> </select>
         <br>
-        <select id="ability_score">
-            <option value="ability_score">Ability score</option>
-        </select>
+        <h4>Description</h4>
+        <p class="backgroundDescription"></p>
+        <h4>Ability scores</h4>
+        <div class="backgroundAbilityScoresContainer">
+        </div>
         <br>
         <select id="ability_score">
             <option value="ability_score">Ability score</option>
