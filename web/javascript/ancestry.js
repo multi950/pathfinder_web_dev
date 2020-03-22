@@ -9,7 +9,8 @@ var currentAncestryFeatID;
 var currentAncestryFeat;
 (function () {
 
-    $.get("/users/" + getCookie("email") + "/ancestry")
+    let email = getCookie("email");
+    $.get("/users/" + email + "/ancestry")
         .done(data => {
             ancestries = data.result;
             populateSelect("ancestrySelect", ancestries);
@@ -33,7 +34,7 @@ function onAncestryChange() {
     if (!isNaN(currentAncestryID)) {
         populateSelectors();
         setAncestryInfo(currentAncestry);
-        
+
         $(".ancestryContent").show();
     } else {
         $(".ancestryContent").hide();
@@ -41,23 +42,23 @@ function onAncestryChange() {
 }
 
 function updateContainer(containerID, objectList) {
-
-    var currentID = $(containerID+">select").val();
-
+    var currentID = $("#"+containerID+">select").val();
+    console.log(containerID);
+    console.log(objectList);
     var currentObject = getObjectFromList(currentID, objectList);
     $(containerID+" > div").empty();
     addToDivAs(currentObject, containerID+" > div");
 }
 
-function populateSelectors() {
+function populateSelectors(email) {
 
-    $.get("/users/" + getCookie("email") + "/ancestryFeat").done(data => {
+    $.get("/users/" + email + "/ancestryFeat").done(data => {
         $("#ancestryFeatSelect").empty();
         currentAncestryFeats = data.result;
         populateSelect("ancestryFeatSelect", getObjectsFromList(currentAncestryID, data.result));
         setAncestryFeatInfo(getAncestryFeat($("#ancestryFeatSelect").val()));
     })
-    $.get("/users/" + getCookie("email") + "/heritage").done(data => {
+    $.get("/users/" + email + "/heritage").done(data => {
         $("#heritageSelect").empty();
         currentHeritages = data.result;
         populateSelect("heritageSelect", getObjectsFromList(currentAncestryID, data.result));
@@ -150,7 +151,7 @@ function setAncestryFeatInfo(ancestryFeat){
 
 
 function addAbilityScoreSelectors() {
-    
+
 }
 
 
