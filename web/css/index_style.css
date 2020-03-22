@@ -1,0 +1,51 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+.female {
+    float: left;
+    width: 35%;
+    display: block;
+    margin-left: 300px;
+}
+
+.male{
+    width: 425px;
+}
+
+p{
+    text-align: center;
+    position: relative;
+    color: #FFBD1B;
+}
+
+.button {
+    background-color: black;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    width: 150px;
+    font-size: 16px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: white;
+    color: black;
+  }
+
+  #container{
+      top: 50%;
+      right: 44%;
+      position: absolute;
+      text-align: center;
+  }
