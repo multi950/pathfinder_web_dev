@@ -1,4 +1,4 @@
-const email = getCookie("email", document.cookie);
+const email = getCookie("email");
 const class_description = document.getElementById("class_description");
 const class_select = document.getElementById("class_select");
 const class_ability_score_select = document.getElementById("class_ability_score_select");
@@ -30,6 +30,14 @@ async function get_data() {
     return [classes, subclasses, class_feats, class_features, subclass_options];
 }
 
+function onSelectChange(){
+    let class_id = class_select.options[class_select.selectedIndex].value;
+    let subclass_id = subclass_select.options[subclass_select.selectedIndex].value;
+    let class_ability_score = class_ability_score_select.options[class_ability_score_select.selectedIndex].value;
+    let class_feat_id = class_feat_select.options[class_feat_select.selectedIndex].value;
+    writeClass(class_id, subclass_id, class_ability_score, class_feat_id);
+}
+
 function set_data() {
     get_data().then((args) => {
         args[0].forEach((_class) => addClassToSelect(_class));
@@ -37,6 +45,9 @@ function set_data() {
             class_select_on_change(args)
         };
         class_select_on_change(args);
+        class_ability_score_select.onchange = () => {onSelectChange()};
+        class_feat_select.onchange = () => {onSelectChange()};
+        subclass_select.onchange = () => {onSelectChange()};
     })
 }
 
@@ -123,6 +134,7 @@ function class_select_on_change(args) {
     class_attacks.innerHTML = _class.attacks;
     class_defenses.innerHTML = _class.defenses;
     class_dc.innerHTML = _class.class_dc;
+    onSelectChange();
 }
 
 function addClassToSelect(_class) {

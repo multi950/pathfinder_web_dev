@@ -1,4 +1,4 @@
-function getCookie(cname, cookies) {
+function getCookie(cname, cookies = document.cookie) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(cookies);
     var ca = decodedCookie.split(';');
@@ -26,8 +26,12 @@ function writeBackground(){
 
 }
 
-function writeClass(){
-
+function writeClass(class_id, subclass_id, class_ability_score, class_feat_id){
+    document.cookie = ("class=" + class_id);
+    document.cookie = ("subclass="+subclass_id);
+    document.cookie = ("class_ability_score="+class_ability_score);
+    document.cookie = ("class_feat="+class_feat_id);
+    console.log(document.cookie);
 }
 
 function writeSkills(){
@@ -35,7 +39,7 @@ function writeSkills(){
 }
 
 function readBasicInformation(){
-    
+
 }
 
 function readAncestry(){
