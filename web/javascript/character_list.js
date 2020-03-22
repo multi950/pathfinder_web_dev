@@ -19,8 +19,8 @@ var skill_modifier;
 
 const save_to_cookie = function(){
     writeBasicInformation(name, description);
-    writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost, ancestry_feat_id);
-    writeClass(class_name, class_id, subclass_name, subclass_option_name, subclass_option_id, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
+    writeAncestry(ancestry_id, heritage_id, ancestry_ability_boost, ancestry_feat_id);
+    writeClass(class_id, subclass_option_id, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
 }
 
 const setCharacterInfo = function(information){
