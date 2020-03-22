@@ -130,7 +130,7 @@ function getCookie(cname, cookies) {
 const createCharacter = function(req, res){
     information = req.body.information;
     user_email = req.body.user_email;
-    connections.query("INSERT INTO character(information, user_email) VALUES(?, ?)",[information, user_email], (err, result)=>{
+    connections.query("INSERT INTO characters(information, user_email) VALUES(?, ?)",[information, user_email], (err, result)=>{
 
         if(err) {
             throw err;
@@ -147,7 +147,7 @@ const updateCharacter = function(req, res){
     information = req.body.information;
     user_email = req.body.user_email;
     characterid = req.body.characterid;
-    connections.query("UPDATE Character SET JSON = “JSON” WHERE id = ? AND user_email = ?",[characterid, user_email], (err, result)=>{
+    connections.query("UPDATE Characters SET JSON = “JSON” WHERE id = ? AND user_email = ?",[characterid, user_email], (err, result)=>{
 
         if(err) {
             throw err;
@@ -160,10 +160,10 @@ const updateCharacter = function(req, res){
 };
 
 //Delete existing character
-const deleteCharacter = function(req, res){
-    user_email = req.body.user_email;
-    characterid = req.body.characterid;
-    connections.query("DELETE FROM character WHERE id = ? AND user_email = ?",[characterid, user_email], (err, result)=>{
+const deleteCharacter = function(req, res, characterid){
+    const user_email = getCookie("email", req.headers.cookie);
+    //characterid = req.body.characterid;
+    connections.query("DELETE FROM characters WHERE id = ? AND user_email = ?",[characterid, user_email], (err, result)=>{
         if(err) {
             throw err;
         }
@@ -180,7 +180,6 @@ const getAncestries = function(req, res){
         if(err){
             throw err;
         }
-        console.log(result);
         res.json({
             success : 1,
             result : result
