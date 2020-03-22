@@ -1,4 +1,4 @@
-function getCookie(cname, cookies) {
+function getCookie(cname, cookies = document.cookie) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(cookies);
     var ca = decodedCookie.split(';');
@@ -33,6 +33,7 @@ function writeBackground(){
 
 }
 
+
 function writeClass(class_name, class_id, subclass_option_name, subclass_option_id, subclass_name, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier){
     document.cookie = ("class_name=" + class_name);
     document.cookie = ("class_id=" + class_id);
@@ -40,15 +41,17 @@ function writeClass(class_name, class_id, subclass_option_name, subclass_option_
     document.cookie = ("subclass_option_id=" + subclass_option_id);
     document.cookie = ("subclass_name="+subclass_name);
     document.cookie = ("subclass_id="+subclass_id);
+
     document.cookie = ("class_ability_score="+class_ability_score);
     document.cookie = ("class_feat="+class_feat_id);
     document.cookie = ("class_skill="+skill);
     document.cookie = ("class_skill_modifier="+skill_modifier);
     //console.log(document.cookie);
+
 }
 
-function writeSkills(){
-
+function writeSelectedSkills(skills){
+    document.cookie = ("selected_skills="+skills);
 }
 
 function readBasicInformation(){
@@ -56,6 +59,7 @@ function readBasicInformation(){
         name: getCookie("name"),
         description: getCookie("description")
     }
+
 }
 
 function readAncestry(){
@@ -82,8 +86,32 @@ function readClass(){
         skill: getCookie("class_skill"),
         skill_modifier: parseInt(getCookie("class_skill_modifier"))
     }
+
 }
 
-function readSkills(){
+function readInheritedSkills(){
+    const regex = /(skill=.*?)(?=;|$)/;
+    let matches = regex.exec(document.cookie);
+    let skills = [];
+    for(let i=1;i<matches.length;i+=2){
+        skills.push(matches[i].substring(6,matches[i].length));
+    }
+    return skills;
 
+}
+
+function readSelectedSkills(){
+    let skills = getCookie("selected_skills");
+    return skills.split(",");
+}
+
+function checkCookies(callback) {
+    let lastCookie = document.cookie; // 'static' memory between function calls
+    return function () {
+        let currentCookie = document.cookie;
+        if (currentCookie != lastCookie) {
+            lastCookie = currentCookie; // store latest cookie
+            callback();
+        }
+    }
 }
