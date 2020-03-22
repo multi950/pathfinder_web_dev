@@ -3,16 +3,34 @@
 
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
+    <script src="../../javascript/handlers/cookie_handler.js"></script>
+    <script src="../../javascript/handlers/repository.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <h3>Introduction </h3>
-        <h4>Name</h4><input type="text" id="name" name="name">
-        <h4>Description</h4><textarea id="description" rows="5" cols="40">
-
-    </textarea>
+        <h2>Introduction </h2>
+        <h3>Name</h3><input type="text" id="introductionName" name="name" onfocusout="saveIntroductionToCookie()" >
+        <h3>Description</h3><textarea id="introductionDescription" rows="5" cols="40" onfocusout="saveIntroductionToCookie()"></textarea>
     </div>
+    
+
+    <script>
+        (function(){
+            console.log(getCookie("name"))
+            if(getCookie("name") != "")
+            document.getElementById("introductionName").value = getCookie("name");
+            if(getCookie("description") != "")
+            document.getElementById("introductionDescription").value = getCookie("description");
+        }())
+        function saveIntroductionToCookie(){
+            writeBasicInformation(
+                document.getElementById("introductionName").value,
+                document.getElementById("introductionDescription").value
+                );
+        }
+
+    </script>
 </body>
 
 </html>
