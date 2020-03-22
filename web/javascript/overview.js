@@ -11,12 +11,24 @@ let ability_scores = document.getElementById("ability_scores");
 let skills_container = document.getElementById("skills_container");
 let create_button = document.getElementById("create_button");
 
-let _basic_information = readBasicInformation();
-let _class = readClass();
-let _ancestry = readAncestry();
-let _background = readBackground();
-let _inherited_skills = readInheritedSkills();
-let _selected_skills = readSelectedSkills();
+
+let _basic_information;
+let _class;
+let _ancestry;
+let _background;
+let _inherited_skills;
+let _selected_skills;
+
+function get_data(){
+    _basic_information = readBasicInformation();
+    _class = readClass();
+    _ancestry = readAncestry();
+    _background = readBackground();
+    _inherited_skills = readInheritedSkills();
+    _selected_skills = readSelectedSkills();
+}
+
+get_data();
 
 function generateAbilityScores(_class, _ancestry, _background) {
     let map = new Map();
@@ -39,6 +51,7 @@ function generateAbilityScores(_class, _ancestry, _background) {
 }
 
 const _onCookieChanged = () => {
+    get_data();
     //basic info
     character_name.innerHTML = _basic_information.name;
     character_description.innerHTML = _basic_information.description;
@@ -75,6 +88,7 @@ const _onCookieChanged = () => {
     skills_container.innerHTML = "";
     fillSkillText(_selected_skills);
     fillSkillText(_inherited_skills);
+    console.log("changed")
 };
 
 function informationToJSON() {
@@ -88,4 +102,4 @@ create_button.onclick = () => {
 };
 
 _onCookieChanged();
-window.setInterval(checkCookies(_onCookieChanged), 100);
+window.setInterval(checkCookies(_onCookieChanged), 101);
