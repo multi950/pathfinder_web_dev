@@ -27,19 +27,13 @@ function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, a
     document.cookie = ("ancestry_ability_boost=" + ancestry_ability_boost);
     document.cookie = ("ancestry_feat_name=" + ancestry_feat_name);
     document.cookie = ("ancestry_feat_id=" + ancestry_feat_id);
-    console.log(document.cookie);
 }
 
-<<<<<<< HEAD
-function writeBackground(background_name, background_ability_boosts, background_skill){
-    document.cookie = ("background_name" + background_name);
-=======
 
 function writeBackground(background_name, background_id, background_description, background_ability_boosts, background_skill){
     document.cookie = ("background_name" + background_name);
     document.cookie = ("background_id"+ background_id);
     document.cookie = ("background_description" + background_description);
->>>>>>> 34cfa970c819f0d7672347089a69cfcb4c6f5f17
     document.cookie = ("background_ability_boosts" + background_ability_boosts);
     document.cookie = ("background_skill" + background_skill);  
 
@@ -84,14 +78,10 @@ function readAncestry(){
 function readBackground(){
     return{
         background_name: getCookie("background_name"),
-<<<<<<< HEAD
-=======
         background_id: getCookie("background_id"),
         background_description: getCookie("background_description"),
->>>>>>> 34cfa970c819f0d7672347089a69cfcb4c6f5f17
         background_ability_boosts: getCookie("background_ability_boosts"),
         background_skill: getCookie("background_skill")
-
     }
 }
 

@@ -72,10 +72,8 @@ function populateSelectors(email) {
     $(".abilityScoreContainer").empty();
     var boostIndex = 0;
     abilityBoostsArray.forEach(abilityBoosts => {
-        
         var abilityBoostsSelector = document.createElement("select");
         abilityBoostsSelector.className = ("ancestry_boost"+boostIndex++)
-
         abilityBoosts.forEach(abilityBoost => {
             var boostOption = document.createElement("option");
             boostOption.value = abilityBoost;
