@@ -2,30 +2,40 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/general_style.css">
+    <link rel="stylesheet" href="../../css/general_style.css">
+    <script src="../../javascript/handlers/cookie_handler.js"></script>
+    <script src="../../javascript/handlers/repository.js"></script>
+    <script src="../../javascript/overview.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <h4>Name: </h4>
-        <p class="bordered">first-name second-name</p>
-        <h4>Description: </h4>
-        <p class="bordered">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        <h4>Ancestry: </h4>
-        <p class="bordered">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        <h4>Background: </h4>
-        <p class="bordered">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        <h4>Class: </h4>
-        <p class="bordered">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        <h4>Skill: </h4>
-        <p class="bordered">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        
-            <button value="create" onclick="">Create Character</button>
+        <div class="container">
+            <h2 id="character_name"></h2><br>
+            <text id="character_description"></text>
+            <text>Level 1</text><br>
+            <h3>Ancestry</h3><br>
+            <text>ancestry: </text><text id="ancestry_name"></text><br>
+            <text>heritage: </text><text id="heritage_name"></text><br>
+            <text>Feat: </text><text id="ancestry_feat"></text><br>
+            <br>
+            <h3>Background</h3>
+            <text>background: </text><text id="background_name"></text><br>
+            <br>
+            <h3>Class</h3><br>
+            <text>Class: </text><text id="class_name"></text><br>
+            <text>Subclass: </text><text id="subclass_name"></text><br>
+            <text>Class feat: </text><text id="class_feat"></text><br>
+        </div>
+        <div class="container">
+            <h3>Ability Scores</h3>
+            <table id="ability_scores">
+            </table>
+            <br>
+            <h3>Skills</h3>
+            <label for="skills_textarea"></label><textarea id="skills_textarea"></textarea>
+        </div>
+        <button id="create_button">Create Character</button>
     </div>
 </body>
 

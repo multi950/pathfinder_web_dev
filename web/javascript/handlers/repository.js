@@ -38,3 +38,7 @@ async function deleteCharacter(character_id){
     }).then(response => response.json());
     return response;
 }
+
+async function createCharacter(json){
+
+}
