@@ -3,17 +3,21 @@
 
 <head>
     <link rel="stylesheet" href="../css/general_style.css">
+    <link rel="stylesheet" href="../css/index_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="content">
+        <img src="../img/2E-logo.png" alt="Pathfinder logo" class="center">
+        <div class="box">
         <form id="registerForm" action="/users/signup" method="post"><br>
             <input type="email" placeholder="Email" id="email" name="email"><br>
             <input type="password" placeholder="Password" id="password" name="password"><br>
             <input type="password" placeholder="Verify password" id="verify_password" name="verify_password"><br>
             <input type="submit" value="Register"></b>
         </form>
+        </div>
     </div>
 
     <script type="module" src="../javascript/register.js"></script>
