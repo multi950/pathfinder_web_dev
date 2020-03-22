@@ -65,14 +65,23 @@ function populateSelectors(email) {
         setHeritageInfo(getHeritage($("#heritageSelect").val()));
     });
 
-    var abilityBoosts = JSON.parse(currentAncestry.ability_boosts).boosts;
+    var abilityBoostsArray = JSON.parse(currentAncestry.ability_boosts);
     $(".abilityScoreSelector").empty();
-    abilityBoosts.forEach(boost => {
-        var boostOption = document.createElement("option");
-        boostOption.value = boost;
-        boostOption.innerHTML = boost;
-        $(".abilityScoreSelector").append(boostOption);
-    });
+    var boostIndex = 0;
+    abilityBoostsArray.forEach(abilityBoosts => {
+        
+        var abilityBoostsSelector = document.createElement("select");
+        abilityBoostsSelector.className = ("ancestry_boost"+boostIndex++)
+
+        abilityBoosts.forEach(abilityBoost => {
+            var boostOption = document.createElement("option");
+            boostOption.value = abilityBoost;
+            boostOption.innerHTML = abilityBoost;
+            abilityBoostsSelector.appendChild(boostOption);
+        });
+
+   $(".abilityScoreContainer").append(abilityBoostsSelector);
+   });
 
 }
 function getHeritage(id){
