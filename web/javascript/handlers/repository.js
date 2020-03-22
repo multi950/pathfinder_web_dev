@@ -44,3 +44,7 @@ async function getBackground(user){
     const data = await response.json();
     return data.result;
 }
+
+async function createCharacter(json){
+
+}

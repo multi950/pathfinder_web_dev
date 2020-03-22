@@ -81,6 +81,11 @@ footer > a {
     color: white;
 }
 
+.container{
+    display: inline-block;
+    vertical-align: top;
+}
+
 #information_container{
     display: inline-block;
     vertical-align: top;
