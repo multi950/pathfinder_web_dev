@@ -13,3 +13,43 @@ function getCookie(cname, cookies) {
     }
     return "";
 }
+
+function writeBasicInformation(){
+
+}
+
+function writeAncestry(){
+
+}
+
+function writeBackground(){
+
+}
+
+function writeClass(){
+
+}
+
+function writeSkills(){
+
+}
+
+function readBasicInformation(){
+    
+}
+
+function readAncestry(){
+
+}
+
+function readBackground(){
+
+}
+
+function readClass(){
+
+}
+
+function readSkills(){
+
+}
