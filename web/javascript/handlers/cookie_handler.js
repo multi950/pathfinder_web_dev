@@ -41,7 +41,6 @@ function writeClass(class_name, class_id, subclass_option_name, subclass_option_
     document.cookie = ("subclass_option_id=" + subclass_option_id);
     document.cookie = ("subclass_name="+subclass_name);
     document.cookie = ("subclass_id="+subclass_id);
-
     document.cookie = ("class_ability_score="+class_ability_score);
     document.cookie = ("class_feat="+class_feat_id);
     document.cookie = ("class_skill="+skill);
@@ -79,8 +78,12 @@ function readBackground(){
 
 function readClass(){
     return {
-        class: getCookie("class"),
-        subclass: getCookie("subclass"),
+        class_name: getCookie("class_name"),
+        class_id: getCookie("class_id"),
+        subclass_option_name: getCookie("subclass_option_name"),
+        subclass_option_id: getCookie("subclass_option_id"),
+        subclass_name: getCookie("subclass_name"),
+        subclass_id: getCookie("subclass_id"),
         ability_score: getCookie("class_ability_score"),
         feat: getCookie("class_feat"),
         skill: getCookie("class_skill"),
