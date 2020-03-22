@@ -24,7 +24,9 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", checkAuth, (req, res) => {
-    repository.deleteCharacter(req, res);
+    console.log(" WE ARE DELETING");
+    const id = req.params.id;
+    repository.deleteCharacter(req, res, id);
 });
 
 
