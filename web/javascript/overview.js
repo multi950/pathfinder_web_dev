@@ -5,18 +5,30 @@ let heritage_name = document.getElementById("heritage_name");
 let ancestry_feat = document.getElementById("ancestry_feat");
 let background_name = document.getElementById("background_name");
 let class__name = document.getElementById("class_name");
-let subclass__name = document.getElementById("subclass_name");
+let _subclass_name = document.getElementById("_subclass_name");
 let class__feat = document.getElementById("class_feat");
 let ability_scores = document.getElementById("ability_scores");
-let skills_textarea = document.getElementById("skills_textarea");
+let skills_container = document.getElementById("skills_container");
 let create_button = document.getElementById("create_button");
 
-let _basic_information = readBasicInformation();
-let _class = readClass();
-let _ancestry = readAncestry();
-let _background = readBackground();
-let _inherited_skills = readInheritedSkills();
-let _selected_skills = readSelectedSkills();
+
+let _basic_information;
+let _class;
+let _ancestry;
+let _background;
+let _inherited_skills;
+let _selected_skills;
+
+function get_data(){
+    _basic_information = readBasicInformation();
+    _class = readClass();
+    _ancestry = readAncestry();
+    _background = readBackground();
+    _inherited_skills = readInheritedSkills();
+    _selected_skills = readSelectedSkills();
+}
+
+get_data();
 
 function generateAbilityScores(_class, _ancestry, _background) {
     let map = new Map();
@@ -26,54 +38,56 @@ function generateAbilityScores(_class, _ancestry, _background) {
     map.set("INT", 10);
     map.set("WIS", 10);
     map.set("CHA", 10);
-    let ability_map = {"STR": 10, "DEX": 10,"CON": 10, "INT": 10,"WIS": 10,"CHA": 10};
     const addToScore = function(score){
-        map.set(score, ability_map[score] + 2);
+        map.set(score, map.get(score) + 2);
     };
-    _ancestry.ability_boosts.forEach((score)=> addToScore(score));
-    _background.ability_boosts.forEach((score)=> addToScore(score));
+    console.log("ancestry ability boosts: " + _ancestry.ability_boosts);
+    //_ancestry.ability_boosts.split(".").forEach((score)=> addToScore(score));
+    //map.set(_ancestry.ability_flaw, map.get_ancestry.ability_flaw - 2);
+    _background.ability_boosts.split(",").forEach((score)=> addToScore(score));
     addToScore(_class.ability_score);
-    map.set(_ancestry.ability_flaw, ability_map[_ancestry.ability_flaw] - 2);
-    console.log(ability_map);
     return map;
 }
 
 const _onCookieChanged = () => {
+    get_data();
     //basic info
     character_name.innerHTML = _basic_information.name;
     character_description.innerHTML = _basic_information.description;
     //ancestry info
-    ancestry_name.innerHTML = _ancestry.ancestry_id;
-    heritage_name.innerHTML = _ancestry.heritage_id;
-    ancestry_feat.innerHTML = _ancestry.feat;
+    ancestry_name.innerHTML = _ancestry.ancestry_name;
+    heritage_name.innerHTML = _ancestry.heritage_name;
+    ancestry_feat.innerHTML = _ancestry.feat_name;
     //background info
-    background_name.innerHTML = _background.id;
+    background_name.innerHTML = _background.name;
     //class info
-    class__name.innerHTML = _class.id;
-    subclass__name.innerHTML = _class.subclass_id;
-    class__feat.innerHTML = _class.feat;
+    class__name.innerHTML = _class.class_name;
+    _subclass_name.innerHTML = _class.subclass_option_name;
+    class__feat.innerHTML = _class.feat_name;
     //ability scores
     let scores = generateAbilityScores(_class,_ancestry,_background);
+    ability_scores.innerHTML = "";
     for(const [score, value] of scores.entries()){
-        let row = document.createElement("tr");
-        let cell1 = document.createElement("cell");
-        let cell2 = document.createElement("cell");
+        let row = ability_scores.insertRow(0);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
         cell1.innerHTML = score;
         cell2.innerHTML = value;
-        row.add(cell1);
-        row.add(cell2);
-        ability_scores.add(row);
+        ability_scores.insertRow(row);
     }
     //skills
-    _selected_skills.forEach((skill) => {
-       skills_textarea.value += `Trained in ${skill}
-       `
-    });
-    _inherited_skills.forEach((skill) => {
-        skills_textarea.value += `Trained in ${skill}
-       `
-    });
-
+    const fillSkillText = function (skills) {
+        skills.forEach((skill) => {
+            let skills_string = "Trained in " + skill + "\n";
+            let text = document.createElement("text");
+            text.innerHTML = skills_string;
+            skills_container.appendChild(text);
+            skills_container.appendChild(document.createElement("br"));
+        });
+    };
+    skills_container.innerHTML = "";
+    fillSkillText(_selected_skills);
+    fillSkillText(_inherited_skills);
 };
 
 function informationToJSON() {
@@ -87,4 +101,4 @@ create_button.onclick = () => {
 };
 
 _onCookieChanged();
-window.setInterval(checkCookies(_onCookieChanged), 100);
+window.setInterval(checkCookies(_onCookieChanged), 101);

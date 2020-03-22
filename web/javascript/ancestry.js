@@ -166,6 +166,7 @@ function saveAncestryToCookies(){
         $("#heritageSelect option:selected").text(), 
         $("#heritageSelect").val(), 
         abilityBoosts,
+        $(".ancestryAbilityFlaw").val(),
         $("#ancestryFeatSelect option:selected").text(), 
         $("#ancestryFeatSelect").val());
 }

@@ -34,12 +34,9 @@ function set_data() {
 const onBackgroundSelectChange = function(backgrounds){
     let background_id = background_select.options[background_select.selectedIndex].value;
     let _background_index = backgrounds.findIndex((background)=> {return parseInt(background.id) === parseInt(background_id)});
-    console.log("background index: " + _background_index);
-    console.log("background id: " + background_id);
     let background = backgrounds[_background_index];
     background_description.innerHTML = background.description;
     background_ability_boost.innerHTML = "";
-    console.log(background.ability_boosts);
     JSON.parse(background.ability_boosts).forEach((boost) =>{
         let option = document.createElement("option");
         option.value = boost;
@@ -52,10 +49,10 @@ const onBackgroundSelectChange = function(backgrounds){
 
 const _onSelectChange = function(){
     let id = background_select.options[background_select.selectedIndex].value;
+    let name = background_select.options[background_select.selectedIndex].text;
     let boosts = getBoosts();
     let skill = background_skill.innerHTML;
-  writeBackground(id,boosts,skill);
-  console.log(document.cookie);
+  writeBackground(name,id,boosts,skill);
 };
 
 function getBoosts(){
