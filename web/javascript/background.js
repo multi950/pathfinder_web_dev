@@ -1,86 +1,67 @@
-
-var backgrounds; 
-
-(function(){
-    set_data();
-}())
-
+let background_select = document.getElementById("background_select");
+let background_description = document.getElementById("background_description");
+let background_ability_boost = document.getElementById("background_ability_boost");
+let background_free_ability_boost = document.getElementById("background_free_ability_boost");
+let background_skill = document.getElementById("background_skill");
+let __email = getCookie("email");
 
 async function get_data(){
-    const background = await getBackground(getCookie("email", document.cookie));
-    return background
+    return await getBackground(__email);
 }
 
-function set_data(){
-    get_data().then(data => {
-        backgrounds = data;
-        populateSelect(".backgroundSelector", backgrounds);
-        setBackground(getCurrentBackground());
-    })
-}
-
-function setBackground(background){
-        console.log(background);
-        $(".backgroundDescription").text(background.description);
-        var ability_boosts = JSON.parse(background.ability_boosts).boosts;
-        setBoosts(ability_boosts);
-        var skills = JSON.parse(background.skill);
-        setSkills(skills);
-
-}
-
-function getCurrentBackground(){
-    currentBackgroundID = $(".backgroundSelector").val();
-    for(var i = 0; i < backgrounds.length; i++){
-        if(backgrounds[i].id == currentBackgroundID)
-            return backgrounds[i];
-    }
-}
-function setSkills(skills){
-    skills.forEach(skill => {
-        var skillOption = document.createElement("option");
-        skillOption.value = skill;
-        skillOption.innerHTML = skill;
-        $(".skillSelector").append(skillOption);
+function set_data() {
+    get_data().then((backgrounds) => {
+        backgrounds.forEach((background) => {
+        let option = document.createElement("option");
+        option.value = background.id;
+        option.text = background.name;
+        background_select.add(option);
     });
-}
-
-function setBoosts(abilityBoostsArray){
-    var boostIndex = 0;
-    abilityBoostsArray.forEach(abilityBoosts => {
-        
-        var abilityBoostsSelector = document.createElement("select");
-        abilityBoostsSelector.className = ("background_boost"+boostIndex++)
-
-        abilityBoosts.forEach(abilityBoost => {
-            var boostOption = document.createElement("option");
-            boostOption.value = abilityBoost;
-            boostOption.innerHTML = abilityBoost;
-            abilityBoostsSelector.appendChild(boostOption);
+        let boosts = ["STR","DEX","CON","INT","WIS","CHA"];
+        boosts.forEach((boost) => {
+            let option = document.createElement("option");
+            option.value = boost;
+            option.text = boost;
+            background_free_ability_boost.add(option);
         });
-   $(".backgroundAbilityScoresContainer").append(abilityBoostsSelector);
-   });
-}
-
-function example(){
-    loadExistingBackground({
-        "name" : "Bounty hunter",
-        "boosts" : ["Wisdom", "Strength"],
-        "skill" : "Survival skill"
+        background_select.onchange = () => onBackgroundSelectChange(backgrounds);
+        background_ability_boost.onchange = _onSelectChange;
+        background_free_ability_boost.onchange = _onSelectChange;
+        onBackgroundSelectChange(backgrounds);
     });
 }
 
-function loadExistingBackground(background){
-    setSelectedOption("backgroundSelector", background.name)
-    var boostSelectorIndex = 0;
-    boosts = background.boosts;
-    boosts.forEach(selectorValue => {
-        setSelectedOption(".background_boost"+boostSelectorIndex++, selectorValue)
-    })
-    setSelectedOption(".skillSelector", background.skill);
+const onBackgroundSelectChange = function(backgrounds){
+    let background_id = background_select.options[background_select.selectedIndex].value;
+    let _background_index = backgrounds.findIndex((background)=> {return parseInt(background.id) === parseInt(background_id)});
+    console.log("background index: " + _background_index);
+    console.log("background id: " + background_id);
+    let background = backgrounds[_background_index];
+    background_description.innerHTML = background.description;
+    background_ability_boost.innerHTML = "";
+    console.log(background.ability_boosts);
+    JSON.parse(background.ability_boosts).forEach((boost) =>{
+        let option = document.createElement("option");
+        option.value = boost;
+        option.text = boost;
+        background_ability_boost.add(option);
+    });
+    background_skill.innerHTML = background.skill;
+    _onSelectChange();
+};
+
+const _onSelectChange = function(){
+    let id = background_select.options[background_select.selectedIndex].value;
+    let boosts = getBoosts();
+    let skill = background_skill.innerHTML;
+  writeBackground(id,boosts,skill);
+  console.log(document.cookie);
+};
+
+function getBoosts(){
+    let boost1 = background_ability_boost.options[background_ability_boost.selectedIndex].value;
+    let boost2 = background_free_ability_boost.options[background_free_ability_boost.selectedIndex].value;
+    return [boost1, boost2];
 }
 
-function setSelectedOption(selectorID, value){
-    $(selectorID +" option[value='"+value+"']").prop('selected', true);
-}
-
+set_data();

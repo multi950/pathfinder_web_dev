@@ -30,22 +30,22 @@ function generateAbilityScores(_class, _ancestry, _background) {
     const addToScore = function(score){
         map.set(score, ability_map[score] + 2);
     };
-    _ancestry.ability_scores.forEach((score)=> addToScore(score));
-    _background.ability_scores.forEach((score)=> addToScore(score));
+    _ancestry.ability_boosts.forEach((score)=> addToScore(score));
+    _background.ability_boosts.forEach((score)=> addToScore(score));
     addToScore(_class.ability_score);
     map.set(_ancestry.ability_flaw, ability_map[_ancestry.ability_flaw] - 2);
     console.log(ability_map);
     return map;
 }
 
-const onCookieChanged = () => {
+const _onCookieChanged = () => {
     //basic info
     character_name.innerHTML = _basic_information.name;
     character_description.innerHTML = _basic_information.description;
     //ancestry info
     ancestry_name.innerHTML = _ancestry.ancestry_id;
     heritage_name.innerHTML = _ancestry.heritage_id;
-    ancestry_feat.innerHTML = _ancestry.ancestry_feat;
+    ancestry_feat.innerHTML = _ancestry.feat;
     //background info
     background_name.innerHTML = _background.id;
     //class info
@@ -86,17 +86,5 @@ create_button.onclick = () => {
     createCharacter(json);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-onCookieChanged();
-window.setInterval(checkCookies(onCookieChanged), 100);
+_onCookieChanged();
+window.setInterval(checkCookies(_onCookieChanged), 100);
