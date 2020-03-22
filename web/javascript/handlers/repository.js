@@ -39,6 +39,12 @@ async function deleteCharacter(character_id){
     return response;
 }
 
+async function getBackground(user){
+    const response = await fetch("http://localhost:1337/users/" + user + "/background");
+    const data = await response.json();
+    return data.result;
+}
+
 async function createCharacter(json){
 
 }
