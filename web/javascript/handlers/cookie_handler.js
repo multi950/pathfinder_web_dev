@@ -41,7 +41,6 @@ function writeClass(class_name, class_id, subclass_option_name, subclass_option_
     document.cookie = ("subclass_option_id=" + subclass_option_id);
     document.cookie = ("subclass_name="+subclass_name);
     document.cookie = ("subclass_id="+subclass_id);
-
     document.cookie = ("class_ability_score="+class_ability_score);
     document.cookie = ("class_feat="+class_feat_id);
     document.cookie = ("class_skill="+skill);
@@ -64,9 +63,7 @@ function readBasicInformation(){
 
 function readAncestry(){
     return {
-        ancestry_name: getCookie("ancestry_name"),
         ancestry_id: getCookie("ancestry_id"),
-        heritage_name: getCookie("heritage_name"),
         heritage_id: getCookie("heritage_id"),
         ability_boost: getCookie("ancestry_ability_boost"),
         feat: getCookie("ancestry_feat")
@@ -79,8 +76,9 @@ function readBackground(){
 
 function readClass(){
     return {
-        class: getCookie("class"),
-        subclass: getCookie("subclass"),
+        class_id: getCookie("class_id"),
+        subclass_option_id: getCookie("subclass_option_id"),
+        subclass_id: getCookie("subclass_id"),
         ability_score: getCookie("class_ability_score"),
         feat: getCookie("class_feat"),
         skill: getCookie("class_skill"),
