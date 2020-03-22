@@ -25,3 +25,16 @@ async function getClassFeatures(user){
     const data = await response.json();
     return data.result;
 }
+
+async function getCharacters(user){
+    const response = await fetch("http://localhost:1337/characters/");
+    const data = await response.json();
+    return data.result;
+}
+
+async function deleteCharacter(character_id){
+    const response = await fetch("http://localhost:1337/characters/" + character_id + "", {
+        method: 'DELETE'
+    }).then(response => response.json());
+    return response;
+}
