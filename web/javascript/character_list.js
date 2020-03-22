@@ -3,6 +3,11 @@ var name;
 var description;
 var ancestry_name;
 var ancestry_id;
+var background_name;
+var background_id;
+var background_description;
+var background_ability_boosts;
+var background_skill;
 var heritage_name;
 var heritage_id;
 var ancestry_ability_boost;
@@ -16,11 +21,14 @@ var class_feat_id;
 var class_ability_score;
 var skill;
 var skill_modifier;
+var selected_skills;
 
 const save_to_cookie = function(){
     writeBasicInformation(name, description);
     writeAncestry(ancestry_id, heritage_id, ancestry_ability_boost, ancestry_feat_id);
-    writeClass(class_id, subclass_option_id, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
+    writeClass(class_name, class_id, subclass_option_name, subclass_option_id, subclass_name, subclass_id, class_ability_score, class_feat_id, skill, skill_modifier);
+    writeBackground(background_name, background_id, background_description, background_ability_boosts, background_skill);
+    writeSelectedSkills(selected_skills);
 }
 
 const setCharacterInfo = function(information){
@@ -28,6 +36,11 @@ const setCharacterInfo = function(information){
     description = information.description;
     ancestry_name = information.ancestry_name;
     ancestry_id = information.ancestry_id;
+    background_id = information.background_id;
+    background_name = information.background_name;
+    background_description = information.background_description;
+    background_skill = information.background_skill;
+    background_ability_boosts = information.background_ability_boosts;
     heritage_name = information.heritage_name;
     heritage_id = information.heritage_id;
     ancestry_ability_boost = information.ancestry_ability_boost;
@@ -42,6 +55,7 @@ const setCharacterInfo = function(information){
     class_ability_score = information.class_ability_score;
     skill = information.skill;
     skill_modifier = information.skill_modifier;
+    selected_skills = information.selected_skills;
 }
 
 
