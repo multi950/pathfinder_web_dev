@@ -74,7 +74,8 @@ function readAncestry(){
         ancestry_id: getCookie("ancestry_id"),
         heritage_id: getCookie("heritage_id"),
         ability_boost: getCookie("ancestry_ability_boost"),
-        feat_id: getCookie("ancestry_feat_id")
+        feat_id: getCookie("ancestry_feat_id"),
+        ability_flaw: getCookie("ability_flaw")
     }
 }
 

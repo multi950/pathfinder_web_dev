@@ -6,7 +6,6 @@
 }
 
 body{
-    
     font-family: Arial, serif;
     height: auto;
     width: auto;
@@ -127,14 +126,12 @@ footer > a {
     width: 45%;
 }
 .ancestryContent > .ancestryInfoContainer{
-    
 
     float: left;
 
 
 }
 .ancestryContent > .ancestryOtherInfo{
-    
     float: right;
 
 }

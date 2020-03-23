@@ -131,7 +131,9 @@ function class_select_on_change(args) {
     class_perception.innerHTML = `${perception} in perception`;
     class_saving_throws.innerHTML =
         `${fortitude} in fortitude
+        
          ${reflex} in reflex
+         
          ${will} in will`;
     class_skills.innerHTML = `Trained in ${JSON.parse(_class.skills).skills[0]}`;
     class_skill_modifier.innerHTML = _class.skill_modifier;

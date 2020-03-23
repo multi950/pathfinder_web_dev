@@ -38,13 +38,15 @@ function generateAbilityScores(_class, _ancestry, _background) {
     map.set("INT", 10);
     map.set("WIS", 10);
     map.set("CHA", 10);
-    const addToScore = function(score){
+    const addToScore = function (score) {
         map.set(score, map.get(score) + 2);
     };
-    console.log("ancestry ability boosts: " + _ancestry.ability_boosts);
-    //_ancestry.ability_boosts.split(".").forEach((score)=> addToScore(score));
-    //map.set(_ancestry.ability_flaw, map.get_ancestry.ability_flaw - 2);
-    _background.ability_boosts.split(",").forEach((score)=> addToScore(score));
+    console.log("ancestry: " + JSON.stringify(_ancestry));
+    if (_ancestry.ability_boost !== "undefined")
+        _ancestry.ability_boost.split(".").forEach((score) => addToScore(score));
+    if(_ancestry.ability_flaw !== "undefined")
+        map.set(_ancestry.ability_flaw, map.get_ancestry.ability_flaw - 2);
+    _background.ability_boost.split(",").forEach((score) => addToScore(score));
     addToScore(_class.ability_score);
     return map;
 }
@@ -91,13 +93,14 @@ const _onCookieChanged = () => {
 };
 
 function informationToJSON() {
-    let json;
+    let json = `{"basic_information": ${JSON.stringify(_basic_information)},"ancestry": ${JSON.stringify(_ancestry)}, "background": ${JSON.stringify(_background)},"class": ${JSON.stringify(_class)},"selected_skills": ${JSON.stringify(_selected_skills)}`;
+    console.log(json);
     return json;
 }
 
 create_button.onclick = () => {
     let json = informationToJSON();
-    createCharacter(json);
+    //createCharacter(json);
 };
 
 _onCookieChanged();
