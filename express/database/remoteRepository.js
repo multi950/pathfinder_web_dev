@@ -144,10 +144,10 @@ const createCharacter = function(req, res){
 
 //Update existing character
 const updateCharacter = function(req, res){
-    let information = req.body.information;
-    let user_email = req.body.user_email;
-    let characterid = req.body.characterid;
-    connections.query("UPDATE Characters SET JSON = ? WHERE id = ? AND user_email = ?",[information, characterid, user_email], (err, result)=>{
+    let information = JSON.stringify(req.body);
+    let user_email = getCookie("email",req.headers.cookie);
+    let characterid = req.params.id;
+    connections.query("UPDATE Characters SET information = ? WHERE id = ? AND user_email = ?",[information, characterid, user_email], (err, result)=>{
 
         if(err) {
             throw err;

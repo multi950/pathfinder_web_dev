@@ -53,3 +53,13 @@ async function createCharacter(json){
     }).then(response => response.json());
     return response;
 }
+
+async function updateCharacter(json){
+    const response = await fetch("http://localhost:1337/characters/"+getCookie("character_id"), {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body:  json
+    }).then(response => response.json());
+    return response;
+
+}

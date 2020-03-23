@@ -97,7 +97,11 @@ function informationToJSON() {
 }
 
 create_button.onclick = () => {
-    let response = createCharacter(informationToJSON());
+    if(getCookie("character_id" !== undefined)){
+        let response = updateCharacter(informationToJSON());
+    }else{
+        let response = createCharacter(informationToJSON());
+    }
     location.href='../logged_in.html';
 };
 
