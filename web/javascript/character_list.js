@@ -91,7 +91,8 @@ const characters = getCharacters(email).then(data =>{
         location.href='character_creation.html';
     };
     view_button.onclick = function(){
-        
+        save_to_cookie();
+        location.href='/tabs/overview.html';
     };
 
     //setting innerHTML for buttons
