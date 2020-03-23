@@ -1,4 +1,5 @@
 const email = getCookie("email", document.cookie);
+var character_id;
 var name;
 var description;
 var ancestry_name;
@@ -32,6 +33,7 @@ const save_to_cookie = function(){
     writeClass(class_name, class_id, subclass_option_name, subclass_option_id, subclass_name, subclass_id, class_ability_modifier, class_feat_id, skill, skill_modifier);
     writeBackground(background_name, background_id, background_description, background_ability_boosts, background_skill);
     writeSelectedSkills(selected_skills);
+    writeCharacterId(character_id);
 }
 
 const setCharacterInfo = function(information){
@@ -68,6 +70,7 @@ const characters = getCharacters(email).then(data =>{
     data.forEach(
     (character) => {
     const information = JSON.parse(character.information);
+    character_id = character.id;
     setCharacterInfo(information);
     //creating elements
     const div = document.createElement("div");
