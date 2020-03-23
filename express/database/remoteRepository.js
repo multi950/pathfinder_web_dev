@@ -128,8 +128,8 @@ function getCookie(cname, cookies) {
 
 //Create a new character
 const createCharacter = function(req, res){
-    information = req.body.information;
-    user_email = req.body.user_email;
+    let information = JSON.stringify(req.body);
+    let user_email = getCookie("email", req.headers.cookie);
     connections.query("INSERT INTO characters(information, user_email) VALUES(?, ?)",[information, user_email], (err, result)=>{
 
         if(err) {
@@ -144,10 +144,10 @@ const createCharacter = function(req, res){
 
 //Update existing character
 const updateCharacter = function(req, res){
-    information = req.body.information;
-    user_email = req.body.user_email;
-    characterid = req.body.characterid;
-    connections.query("UPDATE Characters SET JSON = “JSON” WHERE id = ? AND user_email = ?",[characterid, user_email], (err, result)=>{
+    let information = req.body.information;
+    let user_email = req.body.user_email;
+    let characterid = req.body.characterid;
+    connections.query("UPDATE Characters SET JSON = ? WHERE id = ? AND user_email = ?",[information, characterid, user_email], (err, result)=>{
 
         if(err) {
             throw err;

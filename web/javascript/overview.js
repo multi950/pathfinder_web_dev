@@ -41,11 +41,11 @@ function generateAbilityScores(_class, _ancestry, _background) {
     const addToScore = function (score) {
         map.set(score, map.get(score) + 2);
     };
-    console.log("ancestry: " + JSON.stringify(_ancestry));
+    console.log("ancestry boosts: " + JSON.stringify(_ancestry.ability_boost));
     if (_ancestry.ability_boost !== "undefined")
-        _ancestry.ability_boost.split(".").forEach((score) => addToScore(score));
+        _ancestry.ability_boost.split(",").forEach((score) => addToScore(score));
     if(_ancestry.ability_flaw !== "undefined")
-        map.set(_ancestry.ability_flaw, map.get_ancestry.ability_flaw - 2);
+        map.set(_ancestry.ability_flaw, map.get(_ancestry.ability_flaw) - 2);
     _background.ability_boost.split(",").forEach((score) => addToScore(score));
     addToScore(_class.ability_score);
     return map;
@@ -93,14 +93,13 @@ const _onCookieChanged = () => {
 };
 
 function informationToJSON() {
-    let json = `{"basic_information": ${JSON.stringify(_basic_information)},"ancestry": ${JSON.stringify(_ancestry)}, "background": ${JSON.stringify(_background)},"class": ${JSON.stringify(_class)},"selected_skills": ${JSON.stringify(_selected_skills)}`;
-    console.log(json);
-    return json;
+    return `{"basic_information": ${JSON.stringify(_basic_information)},"ancestry": ${JSON.stringify(_ancestry)}, "background": ${JSON.stringify(_background)},"class": ${JSON.stringify(_class)},"selected_skills": ${JSON.stringify(_selected_skills)}}`;
 }
 
 create_button.onclick = () => {
-    let json = informationToJSON();
-    //createCharacter(json);
+    let response = createCharacter(informationToJSON());
+    if(response.success === 1)
+        console.log("zach ma'adik successfully");
 };
 
 _onCookieChanged();

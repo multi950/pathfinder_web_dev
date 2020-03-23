@@ -17,10 +17,10 @@
 
     <script>
         (function(){
-            console.log(getCookie("name"))
-            if(getCookie("name") != "")
+
+            if(getCookie("name") != "" && getCookie("name") != undefined)
             document.getElementById("introductionName").value = getCookie("name");
-            if(getCookie("description") != "")
+            if(getCookie("description") != "" && getCookie("name") != undefined)
             document.getElementById("introductionDescription").value = getCookie("description");
         }())
         function saveIntroductionToCookie(){
