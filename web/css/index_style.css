@@ -16,7 +16,7 @@
     text-align: center;
     margin-top: 10%;
     border-radius: 5px;
-    background-color: var(--primary-color);
+    background-image: url("./../resources/img/paper.jpg");
     padding: 20px;
     width: 20%;
     margin-left: 40%;
