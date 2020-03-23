@@ -46,5 +46,10 @@ async function getBackground(user){
 }
 
 async function createCharacter(json){
-
+    const response = await fetch("http://localhost:1337/characters/", {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body:  json
+    }).then(response => response.json());
+    return response;
 }

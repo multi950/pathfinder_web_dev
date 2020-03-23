@@ -75,7 +75,7 @@ function readAncestry(){
         heritage_id: getCookie("heritage_id"),
         ability_boost: getCookie("ancestry_ability_boost"),
         feat_id: getCookie("ancestry_feat_id"),
-        ability_flaw: getCookie("ability_flaw")
+        ability_flaw: getCookie("ancestry_ability_flaw")
     }
 }
 
@@ -83,7 +83,7 @@ function readBackground(){
     return{
         name: getCookie("background_name"),
         id: getCookie("background_id"),
-        ability_boosts: getCookie("background_ability_boosts"),
+        ability_boost: getCookie("background_ability_boosts"),
         skill: getCookie("background_skill")
     }
 }

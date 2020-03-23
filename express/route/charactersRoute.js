@@ -15,7 +15,7 @@ router.get("/", checkAuth, (req, res) => {
 });
 
 router.post("/", checkAuth, (req, res) => {
-    repository.createCharacters(req, res);
+    repository.createCharacter(req, res);
 });
 
 router.put("/:id", (req, res) => {
