@@ -19,7 +19,7 @@ function writeBasicInformation(name, description){
     document.cookie = ("description=" + description);
 }
 
-function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost,ancestry_feat_name, ancestry_feat_id){
+function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost,ancestry_feat_name, ancestry_feat_id, ancestry_ability_flaw){
     document.cookie = ("ancestry_name=" + ancestry_name);
     document.cookie = ("ancestry_id=" + ancestry_id);
     document.cookie = ("heritage_name=" + heritage_name);
@@ -27,6 +27,7 @@ function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, a
     document.cookie = ("ancestry_ability_boost=" + ancestry_ability_boost);
     document.cookie = ("ancestry_feat_name=" + ancestry_feat_name);
     document.cookie = ("ancestry_feat_id=" + ancestry_feat_id);
+    document.cookie = ("ancestry_ability_flaw=" + ancestry_ability_flaw);
 }
 
 
