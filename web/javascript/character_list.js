@@ -27,6 +27,7 @@ var skill;
 var skill_modifier;
 var selected_skills;
 
+
 const save_to_cookie = function(){
     writeBasicInformation(name, description);
     writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost, ancestry_feat_name, ancestry_feat_id);

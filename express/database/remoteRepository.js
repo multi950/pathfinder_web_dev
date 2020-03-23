@@ -147,6 +147,7 @@ const updateCharacter = function(req, res){
     let information = JSON.stringify(req.body);
     let user_email = getCookie("email",req.headers.cookie);
     let characterid = req.params.id;
+    console.log("remote repository character id: "+ characterid);
     connections.query("UPDATE Characters SET information = ? WHERE id = ? AND user_email = ?",[information, characterid, user_email], (err, result)=>{
 
         if(err) {
