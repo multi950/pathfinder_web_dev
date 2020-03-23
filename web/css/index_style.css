@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Uncial+Antiqua&display=swap');
+:root{
+    --primary-color: #d9c484;
+    --primary-color-dark: #5e0000;
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -5,11 +12,21 @@
     width: 20%;
 }
 
+.box{
+    text-align: center;
+    margin-top: 10%;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    padding: 20px;
+    width: 20%;
+    margin-left: 40%;
+}
+
 .female {
     float: left;
-    width: 35%;
+    width: 30%;
     display: block;
-    margin-left: 300px;
+    margin-left: 10%;
 }
 
 .male{
@@ -17,16 +34,17 @@
 }
 
 p{
+    font-weight: bold;
+    font-family: 'MedievalSharp', cursive;
     text-align: center;
     position: relative;
-    color: #FFBD1B;
 }
 
-.button {
-    background-color: black;
+.button, .button2 {
+    background-color: var(--primary-color-dark);
     border: none;
     border-radius: 4px;
-    color: white;
+    color: var(--primary-color);
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -38,14 +56,49 @@ p{
     cursor: pointer;
   }
 
+  .button2{
+    padding: 8px 16px;
+      width: 100px;
+  }
+
   .button:hover {
     background-color: white;
     color: black;
   }
 
   #container{
-      top: 50%;
+      top: 10%;
       right: 44%;
       position: absolute;
       text-align: center;
+  }
+
+  input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: var(--primary-color-dark);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .character_container{
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      background-image: url("./../resources/img/paper.jpg");
+      width: 20%;
+      border-radius: 5px;
   }

@@ -67,11 +67,15 @@ const characters = getCharacters(email).then(data =>{
     setCharacterInfo(information);
     //creating elements
     const div = document.createElement("div");
+    div.className="character_container";
     const character_name_header = document.createElement("h3");
     const character_p = document.createElement("p");
     const delete_button = document.createElement("button");
     const edit_button = document.createElement("button");
     const view_button = document.createElement("button");
+    delete_button.className="button2";
+    edit_button.className="button2";
+    view_button.className="button2";
     //setting on.onclick functions
     delete_button.onclick = function(){
         const response = deleteCharacter(character.id);
