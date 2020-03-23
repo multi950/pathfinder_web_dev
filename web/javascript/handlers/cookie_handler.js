@@ -19,6 +19,10 @@ function writeBasicInformation(name, description){
     document.cookie = ("description=" + description);
 }
 
+function writeCharacterId(characterid){
+    document.cookie = ("character_id=" + characterid);
+}
+
 function writeAncestry(ancestry_name, ancestry_id, heritage_name, heritage_id, ancestry_ability_boost,ancestry_feat_name, ancestry_feat_id, ancestry_ability_flaw){
     document.cookie = ("ancestry_name=" + ancestry_name);
     document.cookie = ("ancestry_id=" + ancestry_id);
@@ -65,6 +69,12 @@ function readBasicInformation(){
         description: getCookie("description")
     }
 
+}
+
+function readCharacterId(){
+    return {
+        character_id: getCookie("character_id")
+    }
 }
 
 function readAncestry(){
