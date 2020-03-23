@@ -7,27 +7,37 @@ var currentHeritage;
 var currentAncestryFeats;
 var currentAncestryFeatID;
 var currentAncestryFeat;
-(function () {
 
+$("#ancestrySelect").change(onAncestryChange);
+$("#heritageSelect").change(onHeritageChange);
+$("#ancestryFeatSelect").change(onAncestryFeatChange);
+
+(function () {
+    
     let email = getCookie("email");
     $.get("/users/" + email + "/ancestry")
         .done(data => {
             ancestries = data.result;
             populateSelect("#ancestrySelect", ancestries);
+            console.log("here");
             onAncestryChange();
-            $("#ancestrySelect").change(onAncestryChange);
-            $("#heritageSelect").change(function() {
-                setHeritageInfo(getHeritage($("#heritageSelect").val()));
-                saveAncestryToCookies();
-            });
-            $("#ancestryFeatSelect").change(function() {
-                setAncestryFeatInfo(getAncestryFeat($("#ancestryFeatSelect").val()));
-                saveAncestryToCookies();
-            });
+
         })
-        .fail(err => {});
-    $(".ancestryContent").hide();
+        .fail(err => {
+            $(".ancestryContent").hide();
+        });
+    loadAncestryFromCookies();
 }())
+
+function onHeritageChange() {
+    setHeritageInfo(getHeritage($("#heritageSelect").val()));
+    saveAncestryToCookies();
+}
+
+function onAncestryFeatChange() {
+    setAncestryFeatInfo(getAncestryFeat($("#ancestryFeatSelect").val()));
+    saveAncestryToCookies();
+}
 
 function onAncestryChange() {
     currentAncestryID = $("#ancestrySelect").val();
@@ -45,12 +55,12 @@ function onAncestryChange() {
 }
 
 function updateContainer(containerID, objectList) {
-    var currentID = $("#"+containerID+">select").val();
+    var currentID = $("#" + containerID + ">select").val();
     console.log(containerID);
     console.log(objectList);
     var currentObject = getObjectFromList(currentID, objectList);
-    $(containerID+" > div").empty();
-    addToDivAs(currentObject, containerID+" > div");
+    $(containerID + " > div").empty();
+    addToDivAs(currentObject, containerID + " > div");
 }
 
 function populateSelectors(email) {
@@ -60,12 +70,14 @@ function populateSelectors(email) {
         currentAncestryFeats = data.result;
         populateSelect("#ancestryFeatSelect", getObjectsFromList(currentAncestryID, data.result));
         setAncestryFeatInfo(getAncestryFeat($("#ancestryFeatSelect").val()));
+        onAncestryFeatChange();
     })
     $.get("/users/" + email + "/heritage").done(data => {
         $("#heritageSelect").empty();
         currentHeritages = data.result;
         populateSelect("#heritageSelect", getObjectsFromList(currentAncestryID, data.result));
         setHeritageInfo(getHeritage($("#heritageSelect").val()));
+        onHeritageChange();
     });
 
     var abilityBoostsArray = JSON.parse(currentAncestry.ability_boosts);
@@ -73,27 +85,29 @@ function populateSelectors(email) {
     var boostIndex = 0;
     abilityBoostsArray.forEach(abilityBoosts => {
         var abilityBoostsSelector = document.createElement("select");
-        abilityBoostsSelector.className = ("ancestry_boost"+boostIndex++)
+        abilityBoostsSelector.className = ("ancestry_boost" + boostIndex++)
         abilityBoosts.forEach(abilityBoost => {
             var boostOption = document.createElement("option");
             boostOption.value = abilityBoost;
             boostOption.innerHTML = abilityBoost;
             abilityBoostsSelector.appendChild(boostOption);
         });
-            abilityBoostsSelector.onchange = saveAncestryToCookies;
-   $(".abilityScoreContainer").append(abilityBoostsSelector);
-   });
+        abilityBoostsSelector.onchange = saveAncestryToCookies;
+        $(".abilityScoreContainer").append(abilityBoostsSelector);
+    });
 
 }
-function getHeritage(id){
-    for(var i = 0; i < currentHeritages.length; i++){
-        if(currentHeritages[i].id == id)
+
+function getHeritage(id) {
+    for (var i = 0; i < currentHeritages.length; i++) {
+        if (currentHeritages[i].id == id)
             return currentHeritages[i];
     }
 }
-function getAncestryFeat(id){
-    for(var i = 0; i < currentAncestryFeats.length; i++){
-        if(currentAncestryFeats[i].id == id)
+
+function getAncestryFeat(id) {
+    for (var i = 0; i < currentAncestryFeats.length; i++) {
+        if (currentAncestryFeats[i].id == id)
             return currentAncestryFeats[i];
     }
 }
@@ -105,6 +119,7 @@ function getObjectFromList(id, list) {
         }
     }
 }
+
 function getObjectsFromList(id, data) {
     var filteredData = []
     for (var i = 0; i < data.length; i++) {
@@ -116,7 +131,7 @@ function getObjectsFromList(id, data) {
 }
 
 
-function setAncestryInfo(ancestry){
+function setAncestryInfo(ancestry) {
     $(".ancestryName").text(ancestry.name);
     $(".ancestrySize").text(ancestry.size);
     $(".ancestryHP").text(ancestry.hit_points);
@@ -132,21 +147,23 @@ function setAncestryInfo(ancestry){
     $(".ancestryNames").text(ancestry.names);
     $(".ancestrySampleNames").text(ancestry.sample_names);
 }
-function setHeritageInfo(heritage){
+
+function setHeritageInfo(heritage) {
     $(".heritageName").text(heritage.name);
     $(".heritageDescription").text(heritage.description);
-    if(heritage.special_action == ''){
-    $(".specialActionContainer").hide();
-    }else{
-    $(".specialActionContainer").show();
-    var specialAction = JSON.parse(heritage.special_action);
-    $(".heritageSpecialActionName").text(specialAction.name);
-    $(".heritageSpecialActionType").text(specialAction.type);
-    $(".heritageSpecialActionTrigger").text(specialAction.trigger);
-    $(".heritageSpecialActionDescription").text(specialAction.description);
+    if (heritage.special_action == '') {
+        $(".specialActionContainer").hide();
+    } else {
+        $(".specialActionContainer").show();
+        var specialAction = JSON.parse(heritage.special_action);
+        $(".heritageSpecialActionName").text(specialAction.name);
+        $(".heritageSpecialActionType").text(specialAction.type);
+        $(".heritageSpecialActionTrigger").text(specialAction.trigger);
+        $(".heritageSpecialActionDescription").text(specialAction.description);
+    }
 }
-}
-function setAncestryFeatInfo(ancestryFeat){
+
+function setAncestryFeatInfo(ancestryFeat) {
     $(".ancestryFeatName").text(ancestryFeat.name);
     $(".ancestryFeatActionType").text(ancestryFeat.action_type);
     $(".ancestryFeatLevel").text(ancestryFeat.level);
@@ -154,35 +171,48 @@ function setAncestryFeatInfo(ancestryFeat){
     $(".ancestryFeatDescription").text(ancestryFeat.description);
 }
 
-function saveAncestryToCookies(){
+function saveAncestryToCookies() {
     var abilityBoosts = [];
     $(".abilityScoreContainer").children('select').each(function () {
-        if(this.value != undefined)
+        if (this.value != undefined)
             abilityBoosts[abilityBoosts.length] = this.value;
     });
+
     writeAncestry(
-        $("#ancestrySelect option:selected").text(), 
+        $("#ancestrySelect option:selected").text(),
         $("#ancestrySelect").val(),
-        $("#heritageSelect option:selected").text(), 
-        $("#heritageSelect").val(), 
+        $("#heritageSelect option:selected").text(),
+        $("#heritageSelect").val(),
         abilityBoosts,
-        $(".ancestryAbilityFlaw").val(),
-        $("#ancestryFeatSelect option:selected").text(), 
-        $("#ancestryFeatSelect").val());
+        $("#ancestryFeatSelect option:selected").text(),
+        $("#ancestryFeatSelect").val(),
+        $(".ancestryAbilityFlaw").text());
+
+    console.log("saved");
+    console.log(readAncestry());
 }
 
-function loadAncestryFromCookies(){
+function loadAncestryFromCookies() {
+    console.log("loading")
     var ancestryInfo = readAncestry();
-    $("#ancestrySelect option[value="+ancestryInfo.ancestry_id+"]").prop('selected', true);
-    onAncestryChange();
-    setHeritageInfo(getHeritage(ancestryInfo.heritage_id));
-    setAncestryFeatInfo(getAncestryFeat(ancestryInfo.feat_id));
-    var boosts = (ancestryInfo.ability_boost).split(',');
+    console.log(ancestryInfo);
+    if (ancestryInfo.ancestry_id != "" && ancestryInfo.ancestry_id != undefined) {
+        $("#ancestrySelect option[value=" + ancestryInfo.ancestry_id + "]").prop('selected', true);
+        onAncestryChange();
+    }
+    if (ancestryInfo.heritage_id != "" && ancestryInfo.heritage_id != undefined) {
+        setHeritageInfo(getHeritage(ancestryInfo.heritage_id));
+    }
+    if (ancestryInfo.feat_id != "" && ancestryInfo.feat_id != undefined) {
+        setAncestryFeatInfo(getAncestryFeat(ancestryInfo.feat_id));
+    }
+    if (ancestryInfo.ability_boost != "" && ancestryInfo.ability_boost != undefined)
+        var boosts = (ancestryInfo.ability_boost).split(',');
     var index = 0;
-        $(".abilityScoreContainer").children('select').each(function () {
-            this.value = boosts[index++];
-        });
-    
+    $(".abilityScoreContainer").children('select').each(function () {
+        this.value = boosts[index++];
+    });
+
 }
 
 function getCookie(cname, cookies = document.cookie) {

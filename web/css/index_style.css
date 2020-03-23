@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Uncial+Antiqua&display=swap');
 :root{
     --primary-color: #d9c484;
     --primary-color-dark: #5e0000;
@@ -14,10 +16,10 @@
     text-align: center;
     margin-top: 10%;
     border-radius: 5px;
-    background-color: var(--primary-color);
+    background-image: url("./../resources/img/paper.jpg");
     padding: 20px;
     width: 20%;
-    margin-left: 40%;
+    margin-left: 39%;
 }
 
 .female {
@@ -32,11 +34,13 @@
 }
 
 p{
+    font-weight: bold;
+    font-family: 'MedievalSharp', cursive;
     text-align: center;
     position: relative;
 }
 
-.button {
+.button, .button2 {
     background-color: var(--primary-color-dark);
     border: none;
     border-radius: 4px;
@@ -50,6 +54,11 @@ p{
     font-size: 16px;
     transition-duration: 0.2s;
     cursor: pointer;
+  }
+
+  .button2{
+    padding: 8px 16px;
+      width: 100px;
   }
 
   .button:hover {
@@ -83,4 +92,13 @@ p{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  .character_container{
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      background-image: url("./../resources/img/paper.jpg");
+      width: 20%;
+      border-radius: 5px;
   }
